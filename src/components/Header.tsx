@@ -33,8 +33,8 @@ class Header extends React.Component {
     // <Link to='/'></Link>
 
     render() {
+        const user = firebase.auth().currentUser;
         return (
-
             <Navbar bg='primary' expand='lg'>
                 <Navbar.Brand>
                     <Link to='/' className='navbar-brand'>Quadoodle</Link>
@@ -47,17 +47,10 @@ class Header extends React.Component {
                         <Link to='/about' className='nav-link'>About Us</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        {(() => {
-                            if (firebase.auth().currentUser === null) { // not logged in 
-                                return (<Nav.Link onClick={this.login}>Log In</Nav.Link>);
-                            } else { // logged in
-                                return (
-                                    <>
-                                        <p>Hello, {firebase.auth().currentUser}</p>
-                                        <Nav.Link onClick={this.logout}>Log Out</Nav.Link>
-                                    </>);
-                            }
-                        })()}
+                        <Nav.Link onClick={user ? this.logout : this.login}>
+                            {user ? user.displayName + " ": ""}
+                            Log {user ? "Out" : "In"}
+                        </Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Navbar>

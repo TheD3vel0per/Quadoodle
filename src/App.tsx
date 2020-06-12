@@ -24,10 +24,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path='/' component={HomePage}></Route>
-          {/* <Route path='/session/:id' component={SessionPage}></Route>
-          <Route path='/game/:id' component={GamePage}></Route> */}
+          <Route path='/session/:id' component={SessionPage}></Route>
+          <Route path='/game/:id' component={GamePage}></Route>
           <Route path='/draw' component={Drawer}></Route>
+          <Route path='/' component={HomePage}></Route>
         </Switch>
       </BrowserRouter>
     );
