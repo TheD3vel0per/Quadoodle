@@ -3,6 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Typing from 'react-typing-animation';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 
 class DummyPage extends React.Component {
@@ -17,7 +18,7 @@ class DummyPage extends React.Component {
 
         return (
             <>
-
+                <Header />
                 <ListGroup style={{ maxHeight: '300px', maxWidth: '600px', overflow: 'auto', padding: '10px 15px' }} className="center">
                     <ListGroup.Item action variant="secondary" className="text-center">
                         <Typing speed={1}>

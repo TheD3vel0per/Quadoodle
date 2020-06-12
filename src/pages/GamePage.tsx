@@ -2,7 +2,7 @@ import React from 'react';
 import Drawer from '../components/Drawer';
 import RightRenderer from '../components/RightRenderer';
 import LeftRenderer from '../components/LeftRenderer';
-import UpRenderer from '../components/UpRenderer';
+import TopRenderer from '../components/TopRenderer';
 import BottomRenderer from '../components/BottomRenderer';
 
 class GamePage extends React.Component {
@@ -15,7 +15,7 @@ class GamePage extends React.Component {
     render() {
         return (
             <div>
-                <div><UpRenderer /></div>
+                <div><TopRenderer /></div>
                 <div><LeftRenderer /><Drawer /><RightRenderer /></div>
                 <div><BottomRenderer /></div>
             </div>
