@@ -8,7 +8,7 @@ import {
 
 import Drawer from './components/Drawer';
 import Aiden from './components/Aiden';
-import Vishal from './components/Vishal';
+//import Vishal from './components/Vishal';
 
 class App extends React.Component {
   state = {};
@@ -23,7 +23,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/devam' component={Drawer}></Route>
           <Route path='/aiden' component={Aiden}></Route>
-          <Route path='/vishal' component={Vishal}></Route>
+          {/* <Route path='/vishal' component={Vishal}></Route> */}
         </Switch>
       </BrowserRouter>
     );
