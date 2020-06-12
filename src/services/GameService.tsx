@@ -6,6 +6,9 @@ class GameService {
 
     id: string;
 
+    gameRef: firebase.firestore.DocumentReference;
+
+    gameDoc: Game | null;
     gameDoc$: BehaviorSubject<Game | null> = new BehaviorSubject<Game | null>(null);
 
     constructor(id: string) {
@@ -16,21 +19,37 @@ class GameService {
     /**
      * Initialize
      */
-    async init() {
-        firebase
-            .firestore()
-            .collection('Games')
-            .doc(this.id)
-            .onSnapshot((data) => {
-                if (!data.exists) {
-                    this.gameDoc$.next(null);
-                } else {
-                    const obj = data.data();
-                    this.gameDoc$.next({
-                        _id: 
-                    })
-                }
-            });
+    init() {
+
+        return new Promise((resolve, reject) => {
+
+            this.gameRef = firebase
+                .firestore()
+                .collection('Games')
+                .doc(this.id);
+
+            this.gameRef
+                .onSnapshot((data) => {
+                    resolve();
+                    if (!data.exists) {
+                        this.gameDoc$.next(null);
+                        this.gameDoc = null;
+                    } else {
+                        const obj = data.data();
+                        this.gameDoc$.next({
+                            _id: obj['_id'],
+                            objectToDraw: obj['objectToDraw'],
+                            players: obj['players']
+                        });
+                        this.gameDoc = {
+                            _id: obj['_id'],
+                            objectToDraw: obj['objectToDraw'],
+                            players: obj['players']
+                        };
+                    }
+                });
+
+        });
 
     }
 
@@ -39,20 +58,14 @@ class GameService {
      * Returns true if the game exists
      */
     doesGameExist() {
-        const gameDoc = (await firebase
-            .firestore()
-            .collection('Games')
-            .doc(this.id)
-            .get())
-
-        return gameDoc.exists;
+        return this.gameDoc !== null;
     }
 
     /**
      * 
      */
     async joinGame() {
-        //
+
     }
 }
 

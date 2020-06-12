@@ -1,9 +1,10 @@
-.buttton {
+.btn-primary
+{
     margin-bottom:10px;
-    padding: 15px 32px;
+    padding: 50px 32px;
     font-size: 16px;
     border-radius: 12px;
-    border: 2px solid #555555;
+    border-color: 4px solid #555555;
   }
 
 .center {
@@ -12,5 +13,7 @@
     margin-right: auto;
     width: 50%;
     margin-bottom:10px;
+    width: 100%;
+  height: auto;
    
   }
