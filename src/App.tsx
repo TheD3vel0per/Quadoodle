@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import Drawer from './components/Drawer';
+import Aiden from './components/Aiden';
+import Vishal from './components/Vishal';
+
+class App extends React.Component {
+  state = {};
+
+  constructor(props: Readonly<{}>) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path='/devam' component={Drawer}></Route>
+          <Route path='/aiden' component={Aiden}></Route>
+          <Route path='/vishal' component={Vishal}></Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
