@@ -6,9 +6,12 @@ import {
 } from 'react-router-dom';
 
 
+import HomePage from './pages/HomePage';
+import SessionPage from './pages/SessionPage';
+import GamePage from './pages/GamePage';
 import Drawer from './components/Drawer';
-import Aiden from './components/Aiden';
-//import Vishal from './components/Vishal';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   state = {};
@@ -21,9 +24,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path='/devam' component={Drawer}></Route>
-          <Route path='/aiden' component={Aiden}></Route>
-          {/* <Route path='/vishal' component={Vishal}></Route> */}
+          <Route path='/' component={HomePage}></Route>
+          {/* <Route path='/session/:id' component={SessionPage}></Route>
+          <Route path='/game/:id' component={GamePage}></Route> */}
+          <Route path='/draw' component={Drawer}></Route>
         </Switch>
       </BrowserRouter>
     );
