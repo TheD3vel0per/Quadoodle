@@ -17,6 +17,7 @@ class SessionPage extends React.Component {
         // Does the game exist?
         const gs: GameService = new GameService(this.state.id);
         await gs.init();
+        window['gs'] = gs;
 
         if (gs.doesGameExist()) {
             gs.joinGame();

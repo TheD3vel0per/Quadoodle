@@ -23,6 +23,7 @@
     "react-konva": "^16.13.0-3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-typing-animation": "^1.6.2",
     "rxjs": "^6.5.5",
     "typescript": "^3.7.5",
     "uuid": "^8.1.0"

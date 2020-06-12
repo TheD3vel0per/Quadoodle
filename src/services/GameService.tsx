@@ -71,22 +71,6 @@ class GameService {
      * Join a game if it exists
      */
     async joinGame() {
-        // this.gameDoc
-
-        // \/ Firebase ref object
-        //this.gameRef
-
-        // On Game Creation
-        // [ uid0 ]
-
-        // On Player Join
-        // [ uid0 , uid1 ]
-
-        // On Player Join
-        // [ uid0 , uid1 , uid2 ]
-
-        // On Player Join
-        // [ uid0 , uid1 , uid2 , uid3 ]
 
         const players = this.gameDoc.players;
         const user = firebase.auth().currentUser;
@@ -97,12 +81,17 @@ class GameService {
             displayName: displayName
         };
 
-        if (players.length < 4 && ! players.includes(newPlayer)) {
+        if (players.length < 4 && ! this.containsPlayer(players, newPlayer)) {
             players.push(newPlayer);
             this.gameRef.update({ players: players });
         }
+    }
 
-
+    /**
+     * Returns true if players contains newPlayer
+     */
+    containsPlayer(players, newPlayer) {
+        return players.filter(p => p.uid === newPlayer.uid).length > 0;
     }
 
     /**
@@ -112,11 +101,15 @@ class GameService {
         const players = this.gameDoc.players;
         const user = firebase.auth().currentUser;
         const uid = user.uid;
-        const displayName = user.displayName
+        const displayName = user.displayName;
+        const newPlayer = {
+            uid: uid,
+            displayName: displayName
+        };
 
-        if (players.includes(uid)) {
+        if (players.includes(newPlayer)) {
             players.filter((player) => {
-                return player !== uid;
+                return player.uid !== newPlayer.uid;
             })
         }
     }
@@ -126,11 +119,17 @@ class GameService {
      */
     async createGame() {
         const user = firebase.auth().currentUser;
+        const uid = user.uid;
+        const displayName = user.displayName;
+        const newPlayer = {
+            uid: uid,
+            displayName: displayName
+        }
 
         const firestoreDoc = {
             _id: this.id,
             objectToDraw: 'Octocat',
-            players: [ user.uid ],
+            players: [newPlayer],
             topLeft: '',
             topRight: '',
             bottomLeft: '',
@@ -140,6 +139,43 @@ class GameService {
         this.gameDoc = firestoreDoc;
         const setResult = await this.gameRef.set(firestoreDoc);
         return setResult;
+    }
+
+    async submitDrawing(drawing: string) {
+
+        // Find player index
+        let locationIndex = -1;
+        for (let index = 0; index < this.gameDoc.players.length; index++) {
+            const player = this.gameDoc.players[index];
+            if (player.uid === firebase.auth().currentUser.uid) {
+                locationIndex = index;
+                break;
+            }
+        }
+
+        // Make sure player is in the game
+        if (locationIndex === -1) {
+            throw new Error('Player not found in the game');
+        }
+
+        switch (locationIndex) {
+            case 0: // Top Left
+                this.gameRef.update({ topLeft: drawing });
+                break;
+            case 1: // Top Right
+                this.gameRef.update({ topRight: drawing });
+                break;
+            case 2: // Bottom Left
+                this.gameRef.update({ bottomLeft: drawing });
+                break;
+            case 3: // Bottom Right
+                this.gameRef.update({ bottomRight: drawing });
+                break;
+            default:
+                break;
+        }
+
+
     }
 }
 
