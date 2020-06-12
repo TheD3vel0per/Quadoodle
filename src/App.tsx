@@ -12,6 +12,7 @@ import GamePage from './pages/GamePage';
 import Drawer from './components/Drawer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DummyPage from './pages/DummyPage';
 
 class App extends React.Component {
   state = {};
@@ -27,6 +28,7 @@ class App extends React.Component {
           <Route path='/session/:id' component={SessionPage}></Route>
           <Route path='/game/:id' component={GamePage}></Route>
           <Route path='/draw' component={Drawer}></Route>
+          <Route path='/dummy' component={DummyPage}></Route>
           <Route path='/' component={HomePage}></Route>
         </Switch>
       </BrowserRouter>

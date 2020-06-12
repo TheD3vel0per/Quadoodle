@@ -1,19 +1,33 @@
-.btn-primary
+.btn.btn-primary
 {
-    margin-bottom:10px;
-    padding: 50px 32px;
+    margin-bottom:15px;
     font-size: 16px;
-    border-radius: 12px;
-    border-color: 4px solid #555555;
-  }
-
+    border-radius: 15px;
+    border-color:  #000000;
+    padding: 15px 50px;
+    cursor: pointer;
+}
+.btn.btn-primary:hover {
+    background-color: #4CAF50;
+    color: white;
+    margin-bottom:15px;
+}
+#fixed:hover {
+    background-image:none;
+    margin-bottom:15px;
+   }
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 25%;
     margin-bottom:10px;
-    width: 100%;
-  height: auto;
+    height: 400px;
    
   }
+
+  .divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}

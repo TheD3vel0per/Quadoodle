@@ -1,9 +1,11 @@
 import React from 'react';
 import * as firebase from 'firebase';
+import GameService from '../services/GameService';
 
 class SessionPage extends React.Component {
     state = {
-        id: ''
+        id: '',
+        game: {}
     };
 
     constructor(props) {
@@ -11,13 +13,23 @@ class SessionPage extends React.Component {
         this.state.id = props.match.params.id;
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         // Does the game exist?
+        const gs: GameService = new GameService(this.state.id);
+        await gs.init();
+
+        if (gs.doesGameExist()) {
+            gs.joinGame();
+        } else {
+            gs.createGame();
+        }
+
+        this.setState({ game: gs.gameDoc });
 
     }
 
     render() {
-        return (<p>{this.state.id}</p>);
+        return (<p>{JSON.stringify(this.state.game)}</p>);
     }
 }
 

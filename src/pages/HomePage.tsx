@@ -32,17 +32,16 @@ class HomePage extends React.Component {
                         }}>
                         <div>
                             <Link to={"/session/" + this.getNewId()}>
-                                <Button className="btn btn-primary" size="lg">
+                                <Button className="btn btn-primary" size="lg" >
                                     Create Game
                                 </Button>
                             </Link>
-                            <div>
-                                <Link to={"/session/" + this.getNewId()}>
-                                    <Button className="btn btn-primary" size="lg">
-                                        Join Game
+                            <div className="divider"/>
+                            <Link to={"/session/" + this.getNewId()}>
+                                <Button className="btn btn-primary" size="lg">
+                                    Join Game
                                 </Button>
-                                </Link>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div >
