@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import GameService from '../services/GameService';
 
 var imageURL = "";
-var currentplayer = 3;
 
 class GamePage extends React.Component {
     state = {};
@@ -20,22 +19,24 @@ class GamePage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.gs = window['gs'];
     }
 
 
 
     getURL = () => {
 
-        switch (currentplayer) {
-            case 0:
+
+        switch (this.gs.gameDoc.myDrawingArea) {
+            case 'topleft':
                 return "/assets/img/stages/player_1.png";
                 break;
 
-            case 1:
+            case 'topright':
                 return "/assets/img/stages/player_2.png";
                 break;
 
-            case 2:
+            case 'bottomleft':
                 return "/assets/img/stages/player_3.png";
                 break;
 
@@ -48,7 +49,6 @@ class GamePage extends React.Component {
 
 
     componentDidMount() {
-        this.gs = window['gs'];
         
     }
 

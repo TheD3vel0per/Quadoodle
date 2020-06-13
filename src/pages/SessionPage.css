@@ -1,0 +1,9 @@
+.btn.btn-secondary
+{
+    margin-bottom:15px;
+    font-size: 16px;
+    border-radius: 15px;
+    border-color:  #000000;
+    padding: 15px 50px;
+    cursor: not-allowed;
+}

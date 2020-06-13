@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { Subscription } from 'rxjs';
+import './SessionPage.css';
 
 class SessionPage extends React.Component {
     state = {
@@ -81,17 +82,20 @@ class SessionPage extends React.Component {
                         alignItems: "center"
                     }}>
                     <div>
-                        {this.state.game.players.length > 4 ? 
-                        <Link to={"/game/" + this.state.game._id}>
-                        <Button className="btn btn-primary" size="lg" >
-                            Start Game
+                        {this.state.game.players.length >= 4 ?
+                            <Link to={"/game/" + this.state.game._id}>
+                                <Button className="btn btn-primary" size="lg" >
+                                    Start Game
                             </Button>
-                    </Link>
+                            </Link>
+                            :
+                            <Button style={{cursor: 'not-allowed'}} className="btn btn-secondary" size="lg" >
+                                    Start Game
+                            </Button>
                         }
-                        
                         <div>
                             <Link to={"/session/"}>
-                                <Button className="btn btn-primary" size="lg">
+                                <Button  className="btn btn-primary" size="lg" >
                                     Quit Game
                                 </Button>
                             </Link>
