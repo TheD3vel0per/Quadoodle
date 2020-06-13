@@ -35,32 +35,33 @@ class GameService {
                 .then((result) => {
 
                     if (result.exists) {
-                    const obj = result.data();
-                    this.gameDoc$.next({
-                        _id: obj['_id'],
-                        objectToDraw: obj['objectToDraw'],
-                        players: obj['players'],
-                        playerTurn: obj['playerTurn'],
-                        topLeft: obj['topLeft'],
-                        topRight: obj['topRight'],
-                        bottomLeft: obj['bottomLeft'],
-                        bottomRight: obj['bottomRight'],
-                    });
-                    this.gameDoc = {
-                        _id: obj['_id'],
-                        objectToDraw: obj['objectToDraw'],
-                        players: obj['players'],
-                        playerTurn: obj['playerTurn'],
-                        topLeft: obj['topLeft'],
-                        topRight: obj['topRight'],
-                        bottomLeft: obj['bottomLeft'],
-                        bottomRight: obj['bottomRight'],
-                    };
-                    this.setDrawingArea();
-                } else {
-                    this.gameDoc$.next(null);
-                    this.gameDoc = null;
-                }
+                        const obj = result.data();
+                        this.gameDoc = {
+                            _id: obj['_id'],
+                            objectToDraw: obj['objectToDraw'],
+                            players: obj['players'],
+                            playerTurn: obj['playerTurn'],
+                            topLeft: obj['topLeft'],
+                            topRight: obj['topRight'],
+                            bottomLeft: obj['bottomLeft'],
+                            bottomRight: obj['bottomRight'],
+                        };
+                        this.gameDoc$.next({
+                            _id: obj['_id'],
+                            objectToDraw: obj['objectToDraw'],
+                            players: obj['players'],
+                            playerTurn: obj['playerTurn'],
+                            topLeft: obj['topLeft'],
+                            topRight: obj['topRight'],
+                            bottomLeft: obj['bottomLeft'],
+                            bottomRight: obj['bottomRight'],
+                        });
+                        this.setupStreams();
+                        this.setDrawingArea();
+                    } else {
+                        this.gameDoc$.next(null);
+                        this.gameDoc = null;
+                    }
                     resolve();
                 }).catch(console.error);
 
@@ -82,7 +83,7 @@ class GameService {
         // Find player index
         let playerIndex = this.findPlayerIndex(firebase.auth().currentUser);
 
-        switch(playerIndex) {
+        switch (playerIndex) {
             case 0:
                 this.myDrawingArea = 'topLeft';
                 break;
@@ -96,7 +97,7 @@ class GameService {
                 this.myDrawingArea = 'bottomRight';
                 break;
             default:
-                console.log("You shouldn't see this");
+                console.log("oopsie poopsie");
         }
     }
 
@@ -129,35 +130,36 @@ class GameService {
      */
     private setupStreams() {
         this.gameRef
-                .onSnapshot((data) => {
-                    if (!data.exists) {
-                        this.gameDoc$.next(null);
-                        this.gameDoc = null;
-                    } else {
-                        const obj = data.data();
-                        this.gameDoc$.next({
-                            _id: obj['_id'],
-                            objectToDraw: obj['objectToDraw'],
-                            players: obj['players'],
-                            playerTurn: obj['playerTurn'],
-                            topLeft: obj['topLeft'],
-                            topRight: obj['topRight'],
-                            bottomLeft: obj['bottomLeft'],
-                            bottomRight: obj['bottomRight'],
-                        });
-                        this.gameDoc = {
-                            _id: obj['_id'],
-                            objectToDraw: obj['objectToDraw'],
-                            players: obj['players'],
-                            playerTurn: obj['playerTurn'],
-                            topLeft: obj['topLeft'],
-                            topRight: obj['topRight'],
-                            bottomLeft: obj['bottomLeft'],
-                            bottomRight: obj['bottomRight'],
-                        };
-                        this.setDrawingArea();
-                    }
-                });
+            .onSnapshot((data) => {
+                console.log('doc update', data);
+                if (!data.exists) {
+                    this.gameDoc$.next(null);
+                    this.gameDoc = null;
+                } else {
+                    const obj = data.data();
+                    this.gameDoc = {
+                        _id: obj['_id'],
+                        objectToDraw: obj['objectToDraw'],
+                        players: obj['players'],
+                        playerTurn: obj['playerTurn'],
+                        topLeft: obj['topLeft'],
+                        topRight: obj['topRight'],
+                        bottomLeft: obj['bottomLeft'],
+                        bottomRight: obj['bottomRight'],
+                    };
+                    this.gameDoc$.next({
+                        _id: obj['_id'],
+                        objectToDraw: obj['objectToDraw'],
+                        players: obj['players'],
+                        playerTurn: obj['playerTurn'],
+                        topLeft: obj['topLeft'],
+                        topRight: obj['topRight'],
+                        bottomLeft: obj['bottomLeft'],
+                        bottomRight: obj['bottomRight'],
+                    });
+                    this.setDrawingArea();
+                }
+            });
     }
 
     /**
@@ -174,7 +176,7 @@ class GameService {
             displayName: displayName
         };
 
-        if (players.length < 4 && ! this.containsPlayer(players, newPlayer)) {
+        if (players.length < 4 && !this.containsPlayer(players, newPlayer)) {
             players.push(newPlayer);
             await this.gameRef.update({ players: players });
         }
@@ -194,20 +196,15 @@ class GameService {
      * Remove current user from game
      */
     async quitGame() {
-        const players = this.gameDoc.players;
+        let players = this.gameDoc.players;
         const user = firebase.auth().currentUser;
         const uid = user.uid;
-        const displayName = user.displayName;
-        const newPlayer = {
-            uid: uid,
-            displayName: displayName
-        };
+        
+        players = players.filter((player) => {
+            return player.uid !== uid;
+        });
 
-        if (players.includes(newPlayer)) {
-            players.filter((player) => {
-                return player.uid !== newPlayer.uid;
-            })
-        }
+        this.gameRef.update({players: players});
     }
 
     /**
@@ -220,7 +217,7 @@ class GameService {
         const newPlayer = {
             uid: uid,
             displayName: displayName
-        }
+        };
 
         const firestoreDoc = {
             _id: this.id,
@@ -232,8 +229,8 @@ class GameService {
             bottomLeft: '',
             bottomRight: ''
         };
-        this.gameDoc$.next(firestoreDoc);
         this.gameDoc = firestoreDoc;
+        this.gameDoc$.next(firestoreDoc);
         const setResult = await this.gameRef.set(firestoreDoc);
         this.setupStreams();
         this.setDrawingArea();
@@ -250,17 +247,18 @@ class GameService {
     }
 
     /**
-     * Move to next turn
+     * Move to next turn 
      */
     async nextTurn() {
         const playerTurn = this.gameDoc.playerTurn;
         const turnIndex = this.findPlayerIndex(playerTurn);
 
         const data = this.exportDrawing();
-
         this.submitDrawing(data);
+
         const newPlayerTurn = this.gameDoc.players[turnIndex + 1];
-        
+
+        this.gameRef.update({playerTurn: newPlayerTurn});
     }
 
     async endGame() {

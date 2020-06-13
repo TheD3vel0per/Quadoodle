@@ -84,9 +84,11 @@ class GamePage extends React.Component {
                         justifyContent: "center",
                         alignItems: "center"
                     }}>
-                    <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={gs.myDrawingArea === 'bottomRight' ? this.onSubmitButtonClicked : this.endGame}>
-                        Submit
-                    </Button>
+                    <Link to={'/combined/' + gs._id}>
+                        <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={gs.myDrawingArea === 'bottomRight' ? this.endGame : this.onSubmitButtonClicked}>
+                            {gs.myDrawingArea === 'bottomRight' ? "Finish Game" : "Submit"}
+                        </Button>
+                    </Link>
                 </div>
             </>
         );

@@ -25,7 +25,8 @@ class SessionPage extends React.Component {
             topRight: '',
             bottomLeft: '',
             bottomRight: ''
-        }
+        },
+        goToGame: false,
     };
     gameDocSub$: Subscription;
 
@@ -51,7 +52,10 @@ class SessionPage extends React.Component {
                 console.log(gs);
                 this.gameDocSub$ = gs.gameDoc$.subscribe(data => {
                     console.log(data);
-                    this.setState({ game: data });
+                    this.setState({
+                        game: data,
+                        goToGame: data.playerTurn.uid == firebase.auth().currentUser.uid
+                    });
                 });
 
             }).catch(console.error);
@@ -63,6 +67,10 @@ class SessionPage extends React.Component {
         this.gameDocSub$.unsubscribe();
     }
 
+    quitGame = async () => {
+        window['gs'].quitGame();
+    };
+
     render() {
         return (
             <>
@@ -71,7 +79,7 @@ class SessionPage extends React.Component {
 
                     {this.state.game.players.map(player => (
                         <ListGroup.Item action variant="secondary" className="text-center" key={player.uid}>
-                                <span>{player.displayName}</span>
+                            <span>{player.displayName}</span>
                         </ListGroup.Item>
                     ))}
 
@@ -84,19 +92,25 @@ class SessionPage extends React.Component {
                     }}>
                     <div>
                         {this.state.game.players.length >= 4 ?
-                            <Link to={"/game/" + this.state.game._id}>
-                                <Button className="btn btn-primary" size="lg" >
-                                    Start Game
-                            </Button>
-                            </Link>
+                            (this.state.goToGame ?
+                                <Link to={"/game/" + this.state.game._id}>
+                                    <Button className="btn btn-primary" size="lg" >
+                                        Start Game
+                                    </Button>
+                                </Link> :
+                                <Link to={"/waiting/" + this.state.game._id}>
+                                    <Button className="btn btn-primary" size="lg" >
+                                        Start Game
+                                    </Button>
+                                </Link>)
                             :
-                            <Button style={{cursor: 'not-allowed'}} className="btn btn-secondary" size="lg" >
-                                    Start Game
+                            <Button style={{ cursor: 'not-allowed' }} className="btn btn-secondary" size="lg" >
+                                Start Game
                             </Button>
                         }
                         <div>
                             <Link to={"/session/"}>
-                                <Button  className="btn btn-primary" size="lg" >
+                                <Button className="btn btn-primary" size="lg" onClick={this.quitGame}>
                                     Quit Game
                                 </Button>
                             </Link>
