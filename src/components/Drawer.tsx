@@ -13,7 +13,7 @@ class Drawer extends React.Component {
         mouseActivated: false,
         previousPoint: { x: -1, y: -1 },
         offset: { x: 0, y: 0 }
-    };
+    }; 
     canvas: any;
     ctx: CanvasRenderingContext2D;
 
@@ -86,12 +86,12 @@ class Drawer extends React.Component {
     }
 
     render() {
+        // style={{ border: '1px solid black' }}
         return (
             <canvas
                 id="canvas"
                 width={this.state.width}
                 height={this.state.height}
-                style={{ border: '1px solid black' }}
                 onMouseDown={this.mouseDown}
                 onMouseUp={this.mouseUp}
                 onMouseMove={this.mouseMove}

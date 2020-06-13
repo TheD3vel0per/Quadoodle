@@ -39,6 +39,7 @@ class CombinedPage extends React.Component {
         topRightImage.onload = () => {
             ctx.drawImage(topRightImage, 400, 0);
         };
+        
         let bottomRightImage = new Image();
         bottomRightImage.src = window['gs'].gameDoc.bottomRight;
         bottomRightImage.onload = () => {

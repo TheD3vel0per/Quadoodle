@@ -14,6 +14,7 @@ import DummyPage from './pages/DummyPage';
 import CombinedPage from './pages/CombinedPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import WaitingPage from './pages/WaitingPage';
 
 class App extends React.Component {
   state = {};
@@ -28,8 +29,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/session/:id' component={SessionPage}></Route>
           <Route path='/game/:id' component={GamePage}></Route>
-          <Route path='/draw' component={Drawer}></Route>
-          <Route path='/dummy' component={DummyPage}></Route>
+          <Route path='/waiting/:id' component={WaitingPage}></Route>
           <Route path='/combined/:id' component={CombinedPage}></Route>
           <Route path='/' component={HomePage}></Route>
         </Switch>

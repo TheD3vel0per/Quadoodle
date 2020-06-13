@@ -11,8 +11,29 @@ class TopRenderer extends React.Component {
         const canvas: any = document.getElementById('topCanvas');
         const ctx = canvas.getContext('2d');
 
-        ctx.fillStyle = 'red';
-        ctx.fillRect(20, 0, 400, 20);
+        // Only render if our position is 'bottomLeft' or 'bottomRight'
+        switch (window['gs'].myDrawingArea) {
+            case 'bottomLeft':
+                // render topLeft
+                let topLeftImage = new Image();
+                topLeftImage.src = window['gs'].gameDoc.topLeft;
+                topLeftImage.onload = () => {
+                    ctx.drawImage(topLeftImage, 20, -380);
+                };
+                break;
+            case 'bottomRight':
+                let topRightImage = new Image();
+                topRightImage.src = window['gs'].gameDoc.topRight;
+                topRightImage.onload = () => {
+                    ctx.drawImage(topRightImage, 20, -380);
+                };
+                break;
+            default:
+                break;
+        }
+
+        //ctx.fillStyle = 'red';
+        //ctx.fillRect(20, 0, 400, 20);
     }
 
     render() {
