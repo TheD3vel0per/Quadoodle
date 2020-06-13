@@ -80,7 +80,7 @@ class GameService {
         const playerTurn = this.gameDoc.playerTurn;
 
         // Find player index
-        let playerIndex = this.findPlayerIndex(firebase.auth().currentUser.uid);
+        let playerIndex = this.findPlayerIndex(firebase.auth().currentUser);
 
         switch(playerIndex) {
             case 0:
@@ -107,7 +107,7 @@ class GameService {
         let playerIndex = -1;
         for (let index = 0; index < this.gameDoc.players.length; index++) {
             const player = this.gameDoc.players[index];
-            if (player.uid === user) {
+            if (player.uid === user.uid) {
                 playerIndex = index;
                 break;
             }
@@ -245,7 +245,7 @@ class GameService {
      */
     exportDrawing() {
         const canvas: any = document.getElementById('canvas');
-        const data = canvas.toDataUrl();
+        const data = canvas.toDataURL();
         return data;
     }
 
@@ -255,15 +255,23 @@ class GameService {
     async nextTurn() {
         const playerTurn = this.gameDoc.playerTurn;
         const turnIndex = this.findPlayerIndex(playerTurn);
-        console.log(turnIndex);
+
+        const data = this.exportDrawing();
+
+        this.submitDrawing(data);
         const newPlayerTurn = this.gameDoc.players[turnIndex + 1];
-        this.gameRef.update({playerTurn: newPlayerTurn});
+        
+    }
+
+    async endGame() {
+        const data = this.exportDrawing();
+        this.submitDrawing(data);
     }
 
     async submitDrawing(drawing: string) {
 
         // Find player index
-        let locationIndex = this.findPlayerIndex(firebase.auth().currentUser.uid);
+        let locationIndex = this.findPlayerIndex(firebase.auth().currentUser);
 
         // Make sure player is in the game
         if (locationIndex === -1) {

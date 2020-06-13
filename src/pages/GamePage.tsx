@@ -6,9 +6,14 @@ import TopRenderer from '../components/TopRenderer';
 import BottomRenderer from '../components/BottomRenderer';
 import Header from '../components/Header';
 import './GamePage.css';
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import GameService from '../services/GameService';
+import { 
+    Button,
+    Container,
+    Row,
+    Col,
+} from 'react-bootstrap';
 
 var imageURL = "";
 
@@ -50,19 +55,25 @@ class GamePage extends React.Component {
 
     onSubmitButtonClicked = () => window['gs'].nextTurn();
 
-    
+    endGame = () => window['gs'].endGame();
 
 
     render() {
+        const gs = window['gs'];
         return (
             <>
 
                 <Header />
+
+            <Container>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1>{'Game Page'}</h1>
                 </div>
+            </Container>
+
                 <div>
                     <img style={{ width: '100px', height: '100px' }} className="center" src={this.getURL()} />
+
                     <div className="center">
                         <div style={{ width: 440, height: 20 }}><TopRenderer /></div>
                         <div style={{ height: 400 }}>
@@ -71,8 +82,8 @@ class GamePage extends React.Component {
                             <RightRenderer />
                         </div>
                         <div style={{ width: 440, height: 20 }}><BottomRenderer /></div>
-
                     </div>
+
 
                 </div>
                 <br />
@@ -83,7 +94,7 @@ class GamePage extends React.Component {
                         justifyContent: "center",
                         alignItems: "center"
                     }}>
-                    <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={this.onSubmitButtonClicked}>
+                    <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={gs.myDrawingArea === 'bottomRight' ? this.onSubmitButtonClicked : this.endGame}>
                         Submit
                     </Button>
                 </div>

@@ -23,9 +23,11 @@ class HomePage extends React.Component {
             <>
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing speed={1}>
+                    <h1><Typing speed={0.001}>
                         <Typing.Delay ms={1000} />
-                        <span>{"Let's QuaDoodle!"}</span>
+                        <span>{"Hey Everyone!"}</span>
+                        <Typing.Reset count={1} delay={2000} />
+                        <span> "Let's QuaDoodle!"</span>
                     </Typing></h1>
                 </div>
                 <div>

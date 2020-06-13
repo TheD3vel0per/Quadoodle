@@ -37,12 +37,12 @@ class CombinedPage extends React.Component {
         let topRightImage = new Image();
         topRightImage.src = window['gs'].gameDoc.topRight;
         topRightImage.onload = () => {
-            ctx.drawImage(topRightImage, 401, 0);
+            ctx.drawImage(topRightImage, 400, 0);
         };
         let bottomRightImage = new Image();
         bottomRightImage.src = window['gs'].gameDoc.bottomRight;
         bottomRightImage.onload = () => {
-            ctx.drawImage(bottomRightImage, 401, 401);
+            ctx.drawImage(bottomRightImage, 400, 400);
         };
         
         let topLeftImage = new Image();
@@ -54,7 +54,7 @@ class CombinedPage extends React.Component {
         let bottomLeftImage = new Image();
         bottomLeftImage.src = window['gs'].gameDoc.bottomLeft;
         bottomLeftImage.onload = () => {
-            ctx.drawImage(bottomLeftImage, 0, 401);
+            ctx.drawImage(bottomLeftImage, 0, 400);
         };
 
         

@@ -6,12 +6,16 @@
     border-color:  #000000;
     padding: 15px 50px;
     cursor: pointer;
+    box-shadow: 0 9px #999;
 }
 .btn.btn-primary:hover {
     background-color: #4CAF50;
     color: white;
     margin-bottom:15px;
+    transform: translateY(4px);
 }
+
+
 #fixed:hover {
     background-image:none;
     margin-bottom:15px;
