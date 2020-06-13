@@ -11,8 +11,27 @@ class RightRenderer extends React.Component {
         const canvas: any = document.getElementById('rightCanvas');
         const ctx = canvas.getContext('2d');
 
-        ctx.fillStyle = 'red';
-        ctx.fillRect(0, 0, 20, 400);
+        // Only render if our position is 'topLeft' or 'bottomLeft'
+        switch (window['gs'].myDrawingArea) {
+            case 'topLeft':
+                // render topRight
+                let topRightImage = new Image();
+                topRightImage.src = window['gs'].gameDoc.topRight;
+                topRightImage.onload = () => {
+                    ctx.drawImage(topRightImage, 0, 0);
+                };
+                break;
+            case 'bottomLeft':
+                // render bottomRight
+                let bottomRightImage = new Image();
+                bottomRightImage.src = window['gs'].gameDoc.bottomRight;
+                bottomRightImage.onload = () => {
+                    ctx.drawImage(bottomRightImage, 0, 0);
+                };
+                break;
+            default:
+                break;
+        }
     }
 
     render() {

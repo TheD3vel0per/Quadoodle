@@ -65,7 +65,7 @@ class GamePage extends React.Component {
 
                 <Header />
 
-            <Container fluid>
+            <Container>
             <Row>
                 <Col>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
@@ -77,18 +77,11 @@ class GamePage extends React.Component {
 
                 <div>
 
-            <Container fluid>
-            <Row>
-                <Col>
+                <Container>
+                <Row>
+                    <Col>
                     <img style={{ width: '100px', height: '100px' }} className="center" src={this.getURL()} />
-                </Col>
-            </Row>
-            </Container>
-
-
-            <Container fluid>
-            <Row>
-                <Col>
+                
                     <div className="center">
                         <div style={{ width: 440, height: 20 }}><TopRenderer /></div>
                         <div style={{ height: 400 }}>
@@ -98,10 +91,6 @@ class GamePage extends React.Component {
                         </div>
                         <div style={{ width: 440, height: 20 }}><BottomRenderer /></div>
                     </div>
-
-                    </Col>
-            </Row>
-            </Container>
 
 
                 </div>

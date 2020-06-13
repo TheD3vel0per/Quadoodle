@@ -6,16 +6,29 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 class WaitingPage extends React.Component {
-    state = {};
+    state = {
+        searchData: {}
+    };
 
     constructor(props) {
         super(props);
     }
 
+    fetchData() {
+        fetch('https://app.zenserp.com/api/v2/search?apikey=38bd4300-ad2e-11ea-8785-cffd2f2a02e9&amp;q=elephant&amp;tbm=isch')
+            .then((result) => result.json)
+            .then((data) => {
+                this.setState({
+                    searchData: data
+                });
+            })
+            .catch(console.error);
+    }
+
     render() {
         return (
-        <>
-          <Header />
+            <>
+                <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing speed={0.001}>
                         <Typing.Delay ms={1000} />
@@ -23,18 +36,12 @@ class WaitingPage extends React.Component {
                     </Typing>
                     </h1>
                 </div>
-        
-             <div>
-             var request = require('request');
-             var options = {'{'} url: 'https://app.zenserp.com/api/v2/search?apikey=38bd4300-ad2e-11ea-8785-cffd2f2a02e9&amp;q=elephant&amp;tbm=isch' {'}'};
-             function callback(error, response, body) {'{'}
-             if (!error &amp;&amp; response.statusCode == 200) {'{'}
-             console.log(body);
-             {'}'}
-             {'}'}
-             request(options, callback);
-           </div>
-        </>
+
+                <div>
+
+
+                </div>
+            </>
 
         );
     }

@@ -11,8 +11,29 @@ class LeftyRenderer extends React.Component {
         const canvas: any = document.getElementById('leftCanvas');
         const ctx = canvas.getContext('2d');
 
-        ctx.fillStyle = 'red';
-        ctx.fillRect(0, 0, 20, 400);
+
+        switch (window['gs'].myDrawingArea) {
+            case 'topRight':
+                // render topLeft
+                let topRightImage = new Image();
+                topRightImage.src = window['gs'].gameDoc.topRight;
+                topRightImage.onload = () => {
+                    ctx.drawImage(topRightImage, -380, 0);
+                };
+                break;
+            case 'bottomRight':
+                let bottomRightImage = new Image();
+                bottomRightImage.src = window['gs'].gameDoc.bottomRight;
+                bottomRightImage.onload = () => {
+                    ctx.drawImage(bottomRightImage, -380, 0);
+                };
+                break;
+            default:
+                break;
+        }
+
+        //ctx.fillStyle = 'red';
+        //ctx.fillRect(0, 0, 20, 400);
     }
 
     render() {
