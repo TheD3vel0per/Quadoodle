@@ -27,7 +27,7 @@ class HomePage extends React.Component {
                         <Typing.Delay ms={1000} />
                         <span>{"Hey Everyone!"}</span>
                         <Typing.Reset count={1} delay={2000} />
-                        <span> "Let's QuaDoodle!"</span>
+                        <span> "Let's Quadoodle!"</span>
                     </Typing></h1>
                 </div>
                 <div>

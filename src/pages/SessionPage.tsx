@@ -69,7 +69,7 @@ class SessionPage extends React.Component {
                 <ListGroup style={{ maxHeight: '300px', maxWidth: '600px', overflow: 'auto', padding: '10px 15px' }} className="center">
 
                     {this.state.game.players.map(player => (
-                        <ListGroup.Item action variant="secondary" className="text-center">
+                        <ListGroup.Item action variant="secondary" className="text-center" key={player.uid}>
                                 <span>{player.displayName}</span>
                         </ListGroup.Item>
                     ))}
