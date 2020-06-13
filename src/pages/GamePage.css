@@ -4,3 +4,21 @@
     position: relative;
     clear: both;
   };
+  .btn.btn-primary
+  {
+      margin-bottom:15px;
+      font-size: 16px;
+      border-radius: 15px;
+      border-color:  #000000;
+      padding: 15px 50px;
+      cursor: pointer;
+  }
+  .btn.btn-primary:hover {
+      background-color: #4CAF50;
+      color: white;
+      margin-bottom:15px;
+  }
+  #fixed:hover {
+      background-image:none;
+      margin-bottom:15px;
+     }

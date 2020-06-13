@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../components/Header';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import * as firebase from 'firebase';
 import Image from 'react-image-file-resizer';
 import './HomePage.css';

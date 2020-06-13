@@ -48,6 +48,8 @@ class Drawer extends React.Component {
 
             ctx.beginPath();
             ctx.moveTo(x,y)
+            ctx.lineCap = "round";
+            ctx.lineWidth = 4;
             if (this.state.previousPoint.x === -1 || this.state.previousPoint.y === -1) {
                 ctx.lineTo(x, y)
             } else {
@@ -70,7 +72,7 @@ class Drawer extends React.Component {
                 y: -1
             }
         });
-    }
+    };
 
     componentDidMount() {
         const coords = document

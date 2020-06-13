@@ -23,14 +23,95 @@ class GameService {
 
     /**
      * Initialize
+     * Dont worry about this
      */
     init() {
 
         return new Promise((resolve, reject) => {
 
+            // resolve();
             this.gameRef
-                .onSnapshot((data) => {
+                .get()
+                .then((result) => {
+
+                    if (result.exists) {
+                    const obj = result.data();
+                    this.gameDoc$.next({
+                        _id: obj['_id'],
+                        objectToDraw: obj['objectToDraw'],
+                        players: obj['players'],
+                        playerTurn: obj['playerTurn'],
+                        topLeft: obj['topLeft'],
+                        topRight: obj['topRight'],
+                        bottomLeft: obj['bottomLeft'],
+                        bottomRight: obj['bottomRight'],
+                    });
+                    this.gameDoc = {
+                        _id: obj['_id'],
+                        objectToDraw: obj['objectToDraw'],
+                        players: obj['players'],
+                        playerTurn: obj['playersTurn'],
+                        topLeft: obj['topLeft'],
+                        topRight: obj['topRight'],
+                        bottomLeft: obj['bottomLeft'],
+                        bottomRight: obj['bottomRight'],
+                    };
+                    this.setDrawingArea();
+                } else {
+                    this.gameDoc$.next(null);
+                    this.gameDoc = null;
+                }
                     resolve();
+                }).catch(console.error);
+
+
+
+        });
+
+    }
+
+    /**
+     * Sets what the current players drawing area is
+     */
+    private setDrawingArea() {
+        // myDrawingArea
+        // 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft'
+        const players = this.gameDoc.players;
+        const playerTurn = this.gameDoc.playerTurn;
+        const playerIndex = players.indexOf(playerTurn);
+
+        switch(playerIndex) {
+            case 0:
+                this.myDrawingArea = 'topLeft';
+                break;
+            case 1:
+                this.myDrawingArea = 'topRight';
+                break;
+            case 2:
+                this.myDrawingArea = 'bottomLeft';
+                break;
+            case 3:
+                this.myDrawingArea = 'bottomRight';
+                break;
+            default:
+                console.log("You shouldn't see this");
+        }
+    }
+
+
+    /**
+     * Returns true if the game exists
+     */
+    doesGameExist() {
+        return this.gameDoc !== null;
+    }
+
+    /**
+     * Setup BehaviorSubect
+     */
+    private setupStreams() {
+        this.gameRef
+                .onSnapshot((data) => {
                     if (!data.exists) {
                         this.gameDoc$.next(null);
                         this.gameDoc = null;
@@ -40,7 +121,7 @@ class GameService {
                             _id: obj['_id'],
                             objectToDraw: obj['objectToDraw'],
                             players: obj['players'],
-                            playerTurn: obj['players'][0],
+                            playerTurn: obj['playerTurn'],
                             topLeft: obj['topLeft'],
                             topRight: obj['topRight'],
                             bottomLeft: obj['bottomLeft'],
@@ -50,37 +131,15 @@ class GameService {
                             _id: obj['_id'],
                             objectToDraw: obj['objectToDraw'],
                             players: obj['players'],
-                            playerTurn: obj['players'][0],
+                            playerTurn: obj['playersTurn'],
                             topLeft: obj['topLeft'],
                             topRight: obj['topRight'],
                             bottomLeft: obj['bottomLeft'],
                             bottomRight: obj['bottomRight'],
                         };
-
-
+                        this.setDrawingArea();
                     }
                 });
-
-        });
-
-    }
-
-    /**
-     * Sets what the current players drawing area is
-     */
-    setDrawingArea() {
-        // myDrawingArea
-        // 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft'
-
-
-    }
-
-
-    /**
-     * Returns true if the game exists
-     */
-    doesGameExist() {
-        return this.gameDoc !== null;
     }
 
     /**
@@ -99,8 +158,10 @@ class GameService {
 
         if (players.length < 4 && ! this.containsPlayer(players, newPlayer)) {
             players.push(newPlayer);
-            this.gameRef.update({ players: players });
+            await this.gameRef.update({ players: players });
         }
+
+        this.setupStreams();
     }
 
     /**
@@ -146,6 +207,7 @@ class GameService {
             _id: this.id,
             objectToDraw: 'Octocat',
             players: [newPlayer],
+            playerTurn: newPlayer,
             topLeft: '',
             topRight: '',
             bottomLeft: '',
@@ -154,7 +216,17 @@ class GameService {
         this.gameDoc$.next(firestoreDoc);
         this.gameDoc = firestoreDoc;
         const setResult = await this.gameRef.set(firestoreDoc);
+        this.setupStreams();
         return setResult;
+    }
+
+    /**
+     * Get the drawing as a base 64 string
+     */
+    exportDrawing() {
+        const canvas: any = document.getElementById('canvas');
+        const data = canvas.toDataUrl();
+        return data;
     }
 
     async submitDrawing(drawing: string) {
