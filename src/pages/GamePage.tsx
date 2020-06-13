@@ -6,7 +6,6 @@ import TopRenderer from '../components/TopRenderer';
 import BottomRenderer from '../components/BottomRenderer';
 import Header from '../components/Header';
 import './GamePage.css';
-import { Helmet } from 'react-helmet'
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import GameService from '../services/GameService';
@@ -26,17 +25,16 @@ class GamePage extends React.Component {
 
     getURL = () => {
 
-
         switch (this.gs.gameDoc.myDrawingArea) {
-            case 'topleft':
+            case 'topLeft':
                 return "/assets/img/stages/player_1.png";
                 break;
 
-            case 'topright':
+            case 'topRight':
                 return "/assets/img/stages/player_2.png";
                 break;
 
-            case 'bottomleft':
+            case 'bottomLeft':
                 return "/assets/img/stages/player_3.png";
                 break;
 
@@ -54,7 +52,6 @@ class GamePage extends React.Component {
 
 
     render() {
-        console.log('bitch');
         return (
             <>
 
@@ -85,7 +82,7 @@ class GamePage extends React.Component {
                         justifyContent: "center",
                         alignItems: "center"
                     }}>
-                    <Link to={"/session/"}>
+                    <Link to={"/game/" + this.state.game._id}>
                         <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" >
                             Submit
                         </Button>

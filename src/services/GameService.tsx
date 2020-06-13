@@ -78,7 +78,16 @@ class GameService {
         // 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft'
         const players = this.gameDoc.players;
         const playerTurn = this.gameDoc.playerTurn;
-        const playerIndex = players.indexOf(playerTurn);
+
+        // Find player index
+        let playerIndex = -1;
+        for (let index = 0; index < this.gameDoc.players.length; index++) {
+            const player = this.gameDoc.players[index];
+            if (player.uid === firebase.auth().currentUser.uid) {
+                playerIndex = index;
+                break;
+            }
+        }
 
         switch(playerIndex) {
             case 0:
@@ -162,6 +171,7 @@ class GameService {
         }
 
         this.setupStreams();
+        this.setDrawingArea();
     }
 
     /**
@@ -217,6 +227,7 @@ class GameService {
         this.gameDoc = firestoreDoc;
         const setResult = await this.gameRef.set(firestoreDoc);
         this.setupStreams();
+        this.setDrawingArea();
         return setResult;
     }
 
