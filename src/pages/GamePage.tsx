@@ -4,6 +4,7 @@ import RightRenderer from '../components/RightRenderer';
 import LeftRenderer from '../components/LeftRenderer';
 import TopRenderer from '../components/TopRenderer';
 import BottomRenderer from '../components/BottomRenderer';
+import './GamePage.css';
 
 class GamePage extends React.Component {
     state = {};
@@ -13,11 +14,16 @@ class GamePage extends React.Component {
     }
 
     render() {
+        console.log('bitch');
         return (
-            <div>
-                <div><TopRenderer /></div>
-                <div><LeftRenderer /><Drawer /><RightRenderer /></div>
-                <div><BottomRenderer /></div>
+            <div className="center">
+                <div style={{ width: 440, height: 20 }}><TopRenderer /></div>
+                <div style={{ height: 400 }}>
+                    <LeftRenderer />
+                    <Drawer />
+                    <RightRenderer />
+                </div>
+                <div style={{ width: 440, height: 20 }}><BottomRenderer /></div>
             </div>
         );
     }

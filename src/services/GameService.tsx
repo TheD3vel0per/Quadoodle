@@ -11,6 +11,8 @@ class GameService {
     gameDoc: Game | null;
     gameDoc$: BehaviorSubject<Game | null> = new BehaviorSubject<Game | null>(null);
 
+    myDrawingArea: 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft';
+
     constructor(id: string) {
         this.id = id;
         this.gameRef = firebase
@@ -38,6 +40,7 @@ class GameService {
                             _id: obj['_id'],
                             objectToDraw: obj['objectToDraw'],
                             players: obj['players'],
+                            playerTurn: obj['players'][0],
                             topLeft: obj['topLeft'],
                             topRight: obj['topRight'],
                             bottomLeft: obj['bottomLeft'],
@@ -47,15 +50,28 @@ class GameService {
                             _id: obj['_id'],
                             objectToDraw: obj['objectToDraw'],
                             players: obj['players'],
+                            playerTurn: obj['players'][0],
                             topLeft: obj['topLeft'],
                             topRight: obj['topRight'],
                             bottomLeft: obj['bottomLeft'],
                             bottomRight: obj['bottomRight'],
                         };
+
+
                     }
                 });
 
         });
+
+    }
+
+    /**
+     * Sets what the current players drawing area is
+     */
+    setDrawingArea() {
+        // myDrawingArea
+        // 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft'
+
 
     }
 

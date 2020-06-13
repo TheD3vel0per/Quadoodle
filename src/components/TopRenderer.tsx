@@ -16,7 +16,7 @@ class TopRenderer extends React.Component {
     }
 
     render() {
-        return (<canvas id="topCanvas" width={420} height={20}></canvas>);
+        return (<canvas id="topCanvas" width={420} height={25}></canvas>);
     }
 }
 

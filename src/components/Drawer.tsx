@@ -63,6 +63,15 @@ class Drawer extends React.Component {
         }
     };
 
+    mouseLeave = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>): void => {
+        this.setState({
+            previousPoint: {
+                x: -1,
+                y: -1
+            }
+        });
+    }
+
     componentDidMount() {
         const coords = document
             .getElementById('canvas')
@@ -83,7 +92,8 @@ class Drawer extends React.Component {
                 style={{ border: '1px solid black' }}
                 onMouseDown={this.mouseDown}
                 onMouseUp={this.mouseUp}
-                onMouseMove={this.mouseMove}>
+                onMouseMove={this.mouseMove}
+                onMouseLeave={this.mouseLeave}>
             </canvas>
         );
     }
