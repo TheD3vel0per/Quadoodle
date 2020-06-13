@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import { Subscription } from 'rxjs';
 import './SessionPage.css';
 //import 'https://unpkg.com/aos@2.3.1/dist/aos.css';
+import Timer from '../components/Timer';
 
 class SessionPage extends React.Component {
     state = {
@@ -75,6 +76,7 @@ class SessionPage extends React.Component {
         return (
             <>
                 <Header />
+                <Timer />
                 <ListGroup style={{ maxHeight: '300px', maxWidth: '600px', overflow: 'auto', padding: '10px 15px' }} className="center">
 
                     {this.state.game.players.map(player => (

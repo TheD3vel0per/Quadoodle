@@ -31,6 +31,7 @@ class App extends React.Component {
           <Route path='/game/:id' component={GamePage}></Route>
           <Route path='/waiting/:id' component={WaitingPage}></Route>
           <Route path='/combined/:id' component={CombinedPage}></Route>
+          <Route path='/dummy' component={DummyPage}></Route>
           <Route path='/' component={HomePage}></Route>
         </Switch>
       </BrowserRouter>

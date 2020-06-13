@@ -9,19 +9,20 @@ class Timer extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            counter: 30
+        }
     }
 
     componentDidMount() {
-        
+    const timer =
+    this.state.counter > 0 && setInterval(() => this.setState( this.state.counter - 1), 1000);
+      return () => clearInterval(timer);
     }
+
 
     render() {
 
-        window.setInterval(() => {
-            this.setState(prevState => ({
-                counter: this.state.counter > 0 ? 0: prevState['counter'] - 1
-            }))
-        }, 1000);
 
         return (
             <>

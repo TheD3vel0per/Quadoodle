@@ -15,17 +15,17 @@ class LeftyRenderer extends React.Component {
         switch (window['gs'].myDrawingArea) {
             case 'topRight':
                 // render topLeft
-                let topRightImage = new Image();
-                topRightImage.src = window['gs'].gameDoc.topRight;
-                topRightImage.onload = () => {
-                    ctx.drawImage(topRightImage, -380, 0);
+                let topLeftImage = new Image();
+                topLeftImage.src = window['gs'].gameDoc.topLeft;
+                topLeftImage.onload = () => {
+                    ctx.drawImage(topLeftImage, -380, 0);
                 };
                 break;
             case 'bottomRight':
-                let bottomRightImage = new Image();
-                bottomRightImage.src = window['gs'].gameDoc.bottomRight;
-                bottomRightImage.onload = () => {
-                    ctx.drawImage(bottomRightImage, -380, 0);
+                let bottomLeftImage = new Image();
+                bottomLeftImage.src = window['gs'].gameDoc.bottomLeft;
+                bottomLeftImage.onload = () => {
+                    ctx.drawImage(bottomLeftImage, -380, 0);
                 };
                 break;
             default:

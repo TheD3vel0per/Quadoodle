@@ -19,7 +19,7 @@ class CombinedPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.id = this.props['match'].params.id
+        this.id = this.props['match'].params.id;
     }
 
     displayImage = async (ctx: CanvasRenderingContext2D, gameDoc) => {

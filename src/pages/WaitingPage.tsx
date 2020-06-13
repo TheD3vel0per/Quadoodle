@@ -41,7 +41,16 @@ class WaitingPage extends React.Component {
     //         .catch(console.error);
     // }
 
-    
+    // fetchData = () => {
+    //     firebase
+    //     .functions()
+    //     .httpsCallable('getImages')({
+    //         imageKeyword: window['gs'].gameDoc.objectToDraw
+    //     })
+    //     .then(result => {
+    //         console.log(result)
+    //     }).catch(console.error);
+    // }; 
 
     async componentDidMount() {
         if (!window['gs']) {
@@ -66,7 +75,20 @@ class WaitingPage extends React.Component {
     }
 
     render() {
-        //const BasicRows = () => <Gallery photos={'image_results'} />;
+
+        const photos = [
+            {
+                src: 'https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                width: 4,
+                height: 3
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+                width: 1,
+                height: 1
+            }
+        ];
+        const BasicRows = () => <Gallery photos={photos} />;
 
         return (
             <>
@@ -79,11 +101,11 @@ class WaitingPage extends React.Component {
                     </h1>
 
 
-                    {/* <div>
+                    <div>
                         <BasicRows />
                     </div>
 
-                    */}
+
 
 
                     {/* <ImageGallery items={(this.state.searchData['image_results']).map(result => ({
@@ -92,9 +114,8 @@ class WaitingPage extends React.Component {
                     }))}>
                     </ImageGallery>  */}
 
-                    <ImageQuery items={this.state.images}></ImageQuery>
 
-                    Bingo
+
                     {/* <ImageGallery items={
                         of(this.state.searchData['image_results'])
                             .pipe(

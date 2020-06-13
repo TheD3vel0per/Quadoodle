@@ -13,12 +13,16 @@ import GameService from '../services/GameService';
 var imageURL = "";
 
 class GamePage extends React.Component {
-    state = {};
+    state = {
+        objectToDraw: '',
+        myDrawingArea: '',
+    };
     gs;
+    id;
 
     constructor(props) {
         super(props);
-        this.gs = window['gs'];
+        this.id = this.props['match'].params.id;
     }
 
 
@@ -28,7 +32,7 @@ class GamePage extends React.Component {
         // 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft'
         console.log(window['gs']);
 
-        switch (window['gs'].myDrawingArea) {
+        switch (this.state.myDrawingArea) {
             case 'topLeft':
                 return "/assets/img/stages/player_1.png";
                 break;
@@ -52,15 +56,25 @@ class GamePage extends React.Component {
 
     endGame = () => window['gs'].endGame();
 
+    async componentDidMount() {
+        if (!window['gs']) {
+            window['gs'] = new GameService(this.id);
+            await window['gs'].init();
+        }
+
+        this.setState({
+            objectToDraw: window['gs']['gameDoc']['objectToDraw'],
+            myDrawingArea: window['gs']['myDrawingArea']
+        })
+    }
 
     render() {
-        const gs = window['gs'];
         return (
             <>
 
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1>{window['gs']['gameDoc']['objectToDraw']}</h1>
+                    <h1>{this.state.objectToDraw}</h1>
                 </div>
                 <div>
                     <img style={{ width: '100px', height: '100px' }} className="center" src={this.getURL()} />
@@ -84,9 +98,9 @@ class GamePage extends React.Component {
                         justifyContent: "center",
                         alignItems: "center"
                     }}>
-                    <Link to={'/combined/' + gs._id}>
-                        <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={gs.myDrawingArea === 'bottomRight' ? this.endGame : this.onSubmitButtonClicked}>
-                            {gs.myDrawingArea === 'bottomRight' ? "Finish Game" : "Submit"}
+                    <Link to={'/combined/' + this.id}>
+                        <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={this.state.myDrawingArea === 'bottomRight' ? this.endGame : this.onSubmitButtonClicked}>
+                            {this.state.myDrawingArea === 'bottomRight' ? "Finish Game" : "Submit"}
                         </Button>
                     </Link>
                 </div>
