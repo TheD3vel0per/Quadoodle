@@ -224,7 +224,7 @@ class GameService {
 
         const firestoreDoc = {
             _id: this.id,
-            objectToDraw: 'Octocat',
+            objectToDraw: this.genRandomObject(),
             players: [newPlayer],
             playerTurn: newPlayer,
             topLeft: '',
@@ -296,6 +296,29 @@ class GameService {
         }
 
 
+    }
+
+    genRandomObject() {
+        const options = [
+            'Rat',
+            'Mouse',
+            'Squirrel',
+            'Bat',
+            'Cows',
+            'Sheep',
+            'Pig',
+            'Dog',
+            'Goat',
+            'Cat',
+            'Buffalo',
+            'Horse',
+            'Octocat',
+            'Self Portrait',
+            'Unicorn'
+        ];
+
+        const randomIndex = Math.round(Math.random() * options.length);
+        return options[randomIndex];
     }
 }
 

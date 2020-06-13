@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { Subscription } from 'rxjs';
 import './SessionPage.css';
+//import 'https://unpkg.com/aos@2.3.1/dist/aos.css';
 
 class SessionPage extends React.Component {
     state = {

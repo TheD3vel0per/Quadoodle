@@ -4,6 +4,8 @@ import Typing from 'react-typing-animation';
 import Header from '../components/Header';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import './WaitingPage.css';
+import ImageGallery from 'react-image-gallery';
 
 class WaitingPage extends React.Component {
     state = {
@@ -18,7 +20,7 @@ class WaitingPage extends React.Component {
 
 
     fetchData = () => {
-        fetch('https://app.zenserp.com/api/v2/search?apikey=38bd4300-ad2e-11ea-8785-cffd2f2a02e9&amp&q=elephant&amp&tbm=isch')
+        fetch('https://app.zenserp.com/api/v2/search?apikey=38bd4300-ad2e-11ea-8785-cffd2f2a02e9&amp&q='+window['gs'].gameDoc.objectToDraw+'&amp&tbm=isch&num=10')
             .then((result) => result.json())
             .then((data) => {
                 console.log(data);
@@ -43,9 +45,12 @@ class WaitingPage extends React.Component {
                         <span> "Please Wait For your Turn!"</span>
                     </Typing>
                     </h1>
-                    {(this.state.searchData['image_results']).map(result => (
-                        <img src={result.sourceUrl}></img>
-                    ))}
+
+                    <ImageGallery items={(this.state.searchData['image_results']).map(result => ({
+                        original: result.sourceUrl,
+                        thumbnail: result.thumbnail
+                    }))}>
+                    </ImageGallery>
                 </div>
 
             </>

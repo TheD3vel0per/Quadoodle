@@ -60,7 +60,7 @@ class GamePage extends React.Component {
 
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1>{'Game Page'}</h1>
+                    <h1>{window['gs']['gameDoc']['objectToDraw']}</h1>
                 </div>
                 <div>
                     <img style={{ width: '100px', height: '100px' }} className="center" src={this.getURL()} />
