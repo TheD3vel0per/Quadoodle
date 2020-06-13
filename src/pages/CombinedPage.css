@@ -1,0 +1,22 @@
+
+#CombinedPage {
+    border: 25px solid black;
+}
+
+.CenteredElement{
+    text-align: center;
+}
+
+.btn.btn-primary
+{
+    margin-bottom:15px;
+    font-size: 16px;
+    border-radius: 15px;
+    border-color:  #000000;
+    padding: 15px 50px;
+    cursor: pointer;
+}
+
+.black{
+    border: 25px solid black;
+}

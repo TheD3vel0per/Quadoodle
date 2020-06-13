@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import Image from 'react-image-file-resizer';
 import './HomePage.css';
+import Typing from 'react-typing-animation';
 
 class HomePage extends React.Component {
     state = {};
@@ -21,6 +22,12 @@ class HomePage extends React.Component {
         return (
             <>
                 <Header />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                    <h1><Typing speed={1}>
+                        <Typing.Delay ms={1000} />
+                        <span>{"Let's QuaDoodle!"}</span>
+                    </Typing></h1>
+                </div>
                 <div>
                     <img src="/assets/img/elephant.png" className="center" />
                     <div
@@ -35,7 +42,7 @@ class HomePage extends React.Component {
                                     Create Game
                                 </Button>
                             </Link>
-                            <div className="divider"/>
+                            <div className="divider" />
                             <Link to={"/session/" + this.getNewId()}>
                                 <Button className="btn btn-primary" size="lg">
                                     Join Game

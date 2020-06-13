@@ -50,7 +50,7 @@ class GameService {
                         _id: obj['_id'],
                         objectToDraw: obj['objectToDraw'],
                         players: obj['players'],
-                        playerTurn: obj['playersTurn'],
+                        playerTurn: obj['playerTurn'],
                         topLeft: obj['topLeft'],
                         topRight: obj['topRight'],
                         bottomLeft: obj['bottomLeft'],
@@ -80,14 +80,7 @@ class GameService {
         const playerTurn = this.gameDoc.playerTurn;
 
         // Find player index
-        let playerIndex = -1;
-        for (let index = 0; index < this.gameDoc.players.length; index++) {
-            const player = this.gameDoc.players[index];
-            if (player.uid === firebase.auth().currentUser.uid) {
-                playerIndex = index;
-                break;
-            }
-        }
+        let playerIndex = this.findPlayerIndex(firebase.auth().currentUser.uid);
 
         switch(playerIndex) {
             case 0:
@@ -105,6 +98,22 @@ class GameService {
             default:
                 console.log("You shouldn't see this");
         }
+    }
+
+    /**
+     * Return index of given user
+     */
+    findPlayerIndex(user) {
+        let playerIndex = -1;
+        for (let index = 0; index < this.gameDoc.players.length; index++) {
+            const player = this.gameDoc.players[index];
+            if (player.uid === user) {
+                playerIndex = index;
+                break;
+            }
+        }
+        console.log("index: " + playerIndex);
+        return playerIndex;
     }
 
 
@@ -140,7 +149,7 @@ class GameService {
                             _id: obj['_id'],
                             objectToDraw: obj['objectToDraw'],
                             players: obj['players'],
-                            playerTurn: obj['playersTurn'],
+                            playerTurn: obj['playerTurn'],
                             topLeft: obj['topLeft'],
                             topRight: obj['topRight'],
                             bottomLeft: obj['bottomLeft'],
@@ -240,17 +249,21 @@ class GameService {
         return data;
     }
 
+    /**
+     * Move to next turn
+     */
+    async nextTurn() {
+        const playerTurn = this.gameDoc.playerTurn;
+        const turnIndex = this.findPlayerIndex(playerTurn);
+        console.log(turnIndex);
+        const newPlayerTurn = this.gameDoc.players[turnIndex + 1];
+        this.gameRef.update({playerTurn: newPlayerTurn});
+    }
+
     async submitDrawing(drawing: string) {
 
         // Find player index
-        let locationIndex = -1;
-        for (let index = 0; index < this.gameDoc.players.length; index++) {
-            const player = this.gameDoc.players[index];
-            if (player.uid === firebase.auth().currentUser.uid) {
-                locationIndex = index;
-                break;
-            }
-        }
+        let locationIndex = this.findPlayerIndex(firebase.auth().currentUser.uid);
 
         // Make sure player is in the game
         if (locationIndex === -1) {

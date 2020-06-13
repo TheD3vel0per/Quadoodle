@@ -25,7 +25,10 @@ class GamePage extends React.Component {
 
     getURL = () => {
 
-        switch (this.gs.gameDoc.myDrawingArea) {
+        // 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft'
+        console.log(window['gs']);
+
+        switch (window['gs'].myDrawingArea) {
             case 'topLeft':
                 return "/assets/img/stages/player_1.png";
                 break;
@@ -45,10 +48,9 @@ class GamePage extends React.Component {
 
     };
 
+    onSubmitButtonClicked = () => window['gs'].nextTurn();
 
-    componentDidMount() {
-        
-    }
+    
 
 
     render() {
@@ -67,7 +69,6 @@ class GamePage extends React.Component {
                             <LeftRenderer />
                             <Drawer />
                             <RightRenderer />
-
                         </div>
                         <div style={{ width: 440, height: 20 }}><BottomRenderer /></div>
 
@@ -82,11 +83,9 @@ class GamePage extends React.Component {
                         justifyContent: "center",
                         alignItems: "center"
                     }}>
-                    <Link to={"/game/" + this.state.game._id}>
-                        <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" >
-                            Submit
-                        </Button>
-                    </Link>
+                    <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={this.onSubmitButtonClicked}>
+                        Submit
+                    </Button>
                 </div>
             </>
         );
