@@ -1,28 +1,38 @@
 import React from "react";
 
 
-
-class Timer extends React.Component {
+export default class Timer extends React.Component {
     state = {
-        counter: 30
+        seconds: 30,
     };
 
     constructor(props) {
         super(props);
-        this.state = {
-            counter: 30
-        }
     }
 
-    componentDidMount() {
-    const timer =
-    this.state.counter > 0 && setInterval(() => this.setState( this.state.counter - 1), 1000);
-      return () => clearInterval(timer);
-    }
+    //  componentDidMount() {
+    //     this.myInterval = setInterval(() => {
+    //         const { seconds} = this.state
 
+    //         if (seconds > 0) {
+    //             this.setState(({ seconds }) => ({
+    //                 seconds: seconds - 1
+    //             }))
+    //         }
+    //         if (seconds === 0) {
+    //                 clearInterval(this.myInterval)
+    //         } 
+    //     }, 1000)
+
+    //  }
+
+    //  componentWillUnmount() {
+    //     clearInterval(this.myInterval)
+    //  }
 
     render() {
 
+        const {seconds} = this.state
 
         return (
             <>
@@ -31,7 +41,7 @@ class Timer extends React.Component {
                     <div
                     style = {{width: "200px", height: "200px", border: "25px bold black" }}
                     
-                    >Countdown: {this.state.counter}</div>
+                    >Countdown: {this.state.seconds}</div>
                 </div>
 
             </>
@@ -39,4 +49,3 @@ class Timer extends React.Component {
     }
 }
 
-export default Timer;

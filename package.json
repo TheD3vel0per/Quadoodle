@@ -26,9 +26,11 @@
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-sound": "^1.2.0",
     "react-typing-animation": "^1.6.2",
     "rxjs": "^6.5.5",
     "typescript": "^3.7.5",
+    "use-sound": "^1.0.2",
     "uuid": "^8.1.0"
   },
   "scripts": {

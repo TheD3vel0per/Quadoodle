@@ -71,7 +71,6 @@ class GamePage extends React.Component {
     render() {
         return (
             <>
-
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1>{this.state.objectToDraw}</h1>
@@ -79,16 +78,14 @@ class GamePage extends React.Component {
                 <div>
                     <img style={{ width: '100px', height: '100px' }} className="center" src={this.getURL()} />
                     <div className="center">
-                        <div style={{ width: 440, height: 20 }}><TopRenderer /></div>
+                        <div style={{ width: 440, height: 20 }}><TopRenderer/></div>
                         <div style={{ height: 400 }}>
                             <LeftRenderer />
                             <Drawer />
                             <RightRenderer />
                         </div>
                         <div style={{ width: 440, height: 20 }}><BottomRenderer /></div>
-
                     </div>
-
                 </div>
                 <br />
                 <br />

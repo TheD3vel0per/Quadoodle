@@ -58,7 +58,6 @@ class WaitingPage extends React.Component {
             await window['gs'].init();
         }
 
-        this.fetchData();
         this.gameDocSub$ = window['gs'].gameDoc$.subscribe(data => {
             if (firebase.auth().currentUser.uid == data.playerTurn.uid) {
                 this.setState({

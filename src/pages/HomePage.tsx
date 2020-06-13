@@ -6,6 +6,8 @@ import * as firebase from 'firebase';
 import Image from 'react-image-file-resizer';
 import './HomePage.css';
 import Typing from 'react-typing-animation';
+import useSound from 'use-sound';
+import boopSfx from '/sounds/boop.mp3';
 
 class HomePage extends React.Component {
     state = {};
