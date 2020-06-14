@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default class Timer extends React.Component {
+class Timer extends React.Component {
     state = {
         seconds: 30,
     };
@@ -10,25 +10,8 @@ export default class Timer extends React.Component {
         super(props);
     }
 
-    //  componentDidMount() {
-    //     this.myInterval = setInterval(() => {
-    //         const { seconds} = this.state
 
-    //         if (seconds > 0) {
-    //             this.setState(({ seconds }) => ({
-    //                 seconds: seconds - 1
-    //             }))
-    //         }
-    //         if (seconds === 0) {
-    //                 clearInterval(this.myInterval)
-    //         } 
-    //     }, 1000)
 
-    //  }
-
-    //  componentWillUnmount() {
-    //     clearInterval(this.myInterval)
-    //  }
 
     render() {
 
@@ -38,14 +21,14 @@ export default class Timer extends React.Component {
             <>
 
                 <div>
-                    <div
-                    style = {{width: "200px", height: "200px", border: "25px bold black" }}
-                    
-                    >Countdown: {this.state.seconds}</div>
-                </div>
+                {/* <Countdown date={Date.now() + 5000}>
+                      <Completionist />
+                6</Countdown> */}
 
+                </div>
             </>
         );
     }
 }
 
+export default Timer;

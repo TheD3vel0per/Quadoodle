@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import './WaitingPage.css';
-import ImageGallery from 'react-image-gallery';
 import { Subscription, of } from 'rxjs';
 import { map, take, catchError, filter, tap } from 'rxjs/operators';
 import * as firebase from 'firebase';
@@ -100,9 +99,9 @@ class WaitingPage extends React.Component {
                     </h1>
 
 
-                    <div>
+                    {/* <div>
                         <BasicRows />
-                    </div>
+                    </div> */}
 
 
 
@@ -140,7 +139,7 @@ class WaitingPage extends React.Component {
 
 
                     {this.state.goToGame ?
-                        <Link to={"/game/:"}>
+                        <Link to={"/game/" + this.id}>
                             <Button className="btn btn-primary" size="lg" >
                                 Play My Turn!
                             </Button>

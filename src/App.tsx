@@ -32,6 +32,7 @@ class App extends React.Component {
           <Route path='/waiting/:id' component={WaitingPage}></Route>
           <Route path='/combined/:id' component={CombinedPage}></Route>
           <Route path='/dummy' component={DummyPage}></Route>
+          <Route path='/draw' component={Drawer}></Route>
           <Route path='/' component={HomePage}></Route>
         </Switch>
       </BrowserRouter>

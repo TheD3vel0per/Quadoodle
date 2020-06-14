@@ -2,13 +2,11 @@ import React from 'react';
 import * as firebase from 'firebase';
 import GameService from '../services/GameService';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Typing from 'react-typing-animation';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { Subscription } from 'rxjs';
 import './SessionPage.css';
-//import 'https://unpkg.com/aos@2.3.1/dist/aos.css';
 import Timer from '../components/Timer';
 
 class SessionPage extends React.Component {
@@ -30,9 +28,11 @@ class SessionPage extends React.Component {
         goToGame: false,
     };
     gameDocSub$: Subscription;
+    id;
 
     constructor(props) {
         super(props);
+        this.id = props.match.params.id;
         this.state.id = props.match.params.id;
     }
 
@@ -73,17 +73,47 @@ class SessionPage extends React.Component {
     };
 
     render() {
+
         return (
             <>
                 <Header />
                 <Timer />
                 <ListGroup style={{ maxHeight: '300px', maxWidth: '600px', overflow: 'auto', padding: '10px 15px' }} className="center">
 
-                    {this.state.game.players.map(player => (
-                        <ListGroup.Item action variant="secondary" className="text-center" key={player.uid}>
-                            <span>{player.displayName}</span>
-                        </ListGroup.Item>
-                    ))}
+                    {this.state.game.players.map((player, index) => {
+
+                        switch (index) {
+                            case 1:
+                                return (
+                                    <ListGroup.Item action variant="primary" className="text-center" key={player.uid}>
+                                        <span>{player.displayName}</span>
+                                    </ListGroup.Item>
+                                );
+
+                            case 2:
+                                return (
+                                    <ListGroup.Item action variant="success" className="text-center" key={player.uid}>
+                                        <span>{player.displayName}</span>
+                                    </ListGroup.Item>
+                                );
+
+                            case 3:
+                                return (
+                                    <ListGroup.Item action variant="danger" className="text-center" key={player.uid}>
+                                        <span>{player.displayName}</span>
+                                    </ListGroup.Item>
+                                );
+
+
+                            default:
+                                return (
+                                    <ListGroup.Item action variant="warning" className="text-center" key={player.uid}>
+                                        <span>{player.displayName}</span>
+                                    </ListGroup.Item>
+                                );
+
+                        }
+                    })}
 
                 </ListGroup>
                 <div
@@ -111,7 +141,7 @@ class SessionPage extends React.Component {
                             </Button>
                         }
                         <div>
-                            <Link to={"/session/"}>
+                            <Link to={"/session/" + this.id}>
                                 <Button className="btn btn-primary" size="lg" onClick={this.quitGame}>
                                     Quit Game
                                 </Button>

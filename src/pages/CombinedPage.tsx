@@ -88,7 +88,7 @@ class CombinedPage extends React.Component {
                     <Row>
                         <Col>
                             <div className="CenteredElement">
-                                <Link to={"/session/"}>
+                                <Link to={"/"}>
                                     <Button className="btn btn-primary" size="lg" >
                                         Quit Game
                                     </Button>

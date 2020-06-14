@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import * as $ from 'jquery';
 
 class Drawer extends React.Component {
     state = {
@@ -43,11 +44,15 @@ class Drawer extends React.Component {
         const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
         const x = event.clientX - this.state.offset.x;
         const y = event.clientY - this.state.offset.y;
+        // const x = event.clientX - this.state.offset.x;
+        // const y = event.clientY - this.state.offset.y;
+        // const x = event.nativeEvent.clientX;
+        // const y = event.nativeEvent.clientY;
 
         if (this.state.mouseActivated) {
 
             ctx.beginPath();
-            ctx.moveTo(x,y)
+            ctx.moveTo(x,y);
             ctx.lineCap = "round";
             ctx.lineWidth = 4;
             if (this.state.previousPoint.x === -1 || this.state.previousPoint.y === -1) {
@@ -75,11 +80,17 @@ class Drawer extends React.Component {
     };
 
     componentDidMount() {
-        const coords = document
-            .getElementById('canvas')
-            .getBoundingClientRect();
-        const x = coords.left;
-        const y = coords.top;
+        // const coords = document
+        //     .getElementById('canvas')
+        //     .getBoundingClientRect();
+        // const x = coords.x;
+        // const y = coords.y;
+        
+        // const coords = $(' #canvas ').offset();
+        console.log('jquery', $);
+        const x = $(' #canvas ')[0].offsetLeft;
+        const y = $(' #canvas ')[0].offsetTop;
+
 
         this.setState({ offset: { x: x, y: y } });
         console.log({ offset: { x: x, y: y } });
@@ -92,6 +103,7 @@ class Drawer extends React.Component {
                 id="canvas"
                 width={this.state.width}
                 height={this.state.height}
+                style={{ border: '1px solid black' }}
                 onMouseDown={this.mouseDown}
                 onMouseUp={this.mouseUp}
                 onMouseMove={this.mouseMove}

@@ -3,11 +3,54 @@ import Header from '../components/Header';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
-import Image from 'react-image-file-resizer';
 import './HomePage.css';
 import Typing from 'react-typing-animation';
 import useSound from 'use-sound';
-import boopSfx from '/sounds/boop.mp3';
+
+
+function CreateGameButton() {
+
+    const soundUrl = '/assets/sound/nitrome.mp3';
+
+    const [play, { stop }] = useSound(
+        soundUrl,
+        { volume: 0.5 }
+    );
+
+    return (
+        <Button className="btn btn-primary" size="lg"
+            onClick={() => {
+                play();
+            }}
+            onMouseLeave={() => {
+                stop();
+            }}>
+            Create Game
+        </Button>
+    );
+}
+
+function JoinGameButton() {
+
+    const soundUrl = '/assets/sound/nitrome.mp3';
+
+    const [play, { stop }] = useSound(
+        soundUrl,
+        { volume: 0.5 }
+    );
+
+    return (
+        <Button className="btn btn-primary" size="lg"
+            onClick={() => {
+                play();
+            }}
+            onMouseLeave={() => {
+                stop();
+            }}>
+            Join Game
+        </Button>
+    );
+}
 
 class HomePage extends React.Component {
     state = {};
@@ -21,6 +64,7 @@ class HomePage extends React.Component {
     };
 
     render() {
+
         return (
             <>
                 <Header />
@@ -42,15 +86,11 @@ class HomePage extends React.Component {
                         }}>
                         <div>
                             <Link to={"/session/" + this.getNewId()}>
-                                <Button className="btn btn-primary" size="lg" >
-                                    Create Game
-                                </Button>
+                                <CreateGameButton></CreateGameButton>
                             </Link>
                             <div className="divider" />
                             <Link to={"/session/" + this.getNewId()}>
-                                <Button className="btn btn-primary" size="lg">
-                                    Join Game
-                                </Button>
+                                <JoinGameButton></JoinGameButton>
                             </Link>
                         </div>
                     </div>
