@@ -15,7 +15,21 @@ class FindService {
             .collection('Games');
     }
 
-    async init() {
-        // this.gamesRef.where()
+    init() {
+        return new Promise((resolve, reject) => {
+            this.gamesRef.where('isFull', '==', false).onSnapshot(data => {
+                const games = [];
+                for (let index = 0; index < data.docs.length; index++) {
+                    const document = data.docs[index];
+                    games.push(document.data());
+                }
+                this.openGames = games;
+                this.openGames$.next(games);
+                resolve();
+            });
+
+        });
     }
 }
+
+export default FindService;

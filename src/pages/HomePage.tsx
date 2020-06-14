@@ -1,4 +1,6 @@
 import React from 'react';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 import Header from '../components/Header';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
@@ -18,7 +20,7 @@ function CreateGameButton() {
     );
 
     return (
-        <Button className="btn btn-primary" size="lg"
+        <Button data-aos='zoom-in' className="btn btn-primary" size="lg"
             onClick={() => {
                 play();
             }}
@@ -40,7 +42,7 @@ function JoinGameButton() {
     );
 
     return (
-        <Button className="btn btn-primary" size="lg"
+        <Button data-aos='zoom-in' className="btn btn-primary" size="lg"
             onClick={() => {
                 play();
             }}
@@ -57,6 +59,17 @@ class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+
+        AOS.init(
+            {
+               duration: 2000,
+               delay:500,
+               easing: 'ease-out-back',
+            }
+        );
     }
 
     getNewId = () => {
@@ -89,7 +102,7 @@ class HomePage extends React.Component {
                                 <CreateGameButton></CreateGameButton>
                             </Link>
                             <div className="divider" />
-                            <Link to={"/join/" + this.getNewId()}>
+                            <Link to={"/join/"}>
                                 <JoinGameButton></JoinGameButton>
                             </Link>
                         </div>

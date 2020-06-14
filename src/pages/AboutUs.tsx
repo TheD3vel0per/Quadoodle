@@ -1,10 +1,25 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 import './AboutUs.css';
 import Header from '../components/Header';
 
 class AboutUsPage extends React.Component {
+
+  componentDidMount() {
+
+    AOS.init(
+        {
+           duration: 2000,
+           delay:500,
+           easing: 'ease-out-back',
+        }
+    );
+  }
+
+
   render() {
     return (
       <>
@@ -15,7 +30,7 @@ class AboutUsPage extends React.Component {
             <h5 className="section-title h1">MEET OUR TEAM</h5>
             <div className="row">
               {/* Team member 1*/}
-              <div className="col-sm-6">
+              <div data-aos='zoom-out' className="col-sm-6">
                 <div className="image-flip">
                   <div className="mainflip flip-0">
                     <div className="frontside">
@@ -53,7 +68,7 @@ class AboutUsPage extends React.Component {
               </div>
               {/* ./Team member */}
               {/* Team member 2 */}
-              <div className="col-sm-6">
+              <div data-aos='zoom-out' className="col-sm-6">
                 <div className="image-flip">
                   <div className="mainflip">
                     <div className="frontside">
@@ -91,7 +106,7 @@ class AboutUsPage extends React.Component {
               </div>
 
               {/* Team 3 */}
-              <div className="col-sm-6">
+              <div data-aos='zoom-out' className="col-sm-6">
                 <div className="image-flip">
                   <div className="mainflip flip-0">
                     <div className="frontside">
@@ -128,7 +143,7 @@ class AboutUsPage extends React.Component {
               </div>
               {/* ./Team member */}
               {/* Team member  */}
-              <div className="col-sm-6">
+              <div data-aos='zoom-out' className="col-sm-6">
                 <div className="image-flip">
                   <div className="mainflip">
                     <div className="frontside">
@@ -145,7 +160,7 @@ class AboutUsPage extends React.Component {
                       <div className="card">
                         <div className="card-body text-center mt-4">
                           <h4 className="card-title">About Me</h4>
-                          <p className="card-text">Aiden is a communist<br/><br/>Long live chaz</p>
+                          <p className="card-text">Computers are neat</p>
                           <ul className="list-inline">
                             <li className="list-inline-item">
                               <a className="social-icon text-xs-center" target="_blank" href="https://www.linkedin.com/in/aidenkerr/">
@@ -153,7 +168,7 @@ class AboutUsPage extends React.Component {
                               </a>
                             </li>
                             <li className="list-inline-item">
-                              <a className="social-icon text-xs-center" target="_blank" href="">
+                              <a className="social-icon text-xs-center" target="_blank" href="https://github.com/AidenKerr">
                                 <i className="fa fa-external-link" />
                               </a>
                             </li>

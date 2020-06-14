@@ -1,5 +1,6 @@
 import React from 'react';
 import AOS from 'aos';
+import "aos/dist/aos.css";
 import * as firebase from 'firebase';
 import GameService from '../services/GameService';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -59,6 +60,8 @@ function StartGameDisabledButton() {
 
 function QuitGameButton() {
 
+    const quitGame = () => window['gs'].quitGame();
+
     const soundUrl = '/assets/sound/marimba.mp3';
 
     const [play, { stop }] = useSound(
@@ -67,9 +70,10 @@ function QuitGameButton() {
     );
 
     return (
-        <Button className="btn btn-primary" size="lg"
+        <Button data-aos='zoom-out' className="btn btn-primary" size="lg"
             onClick={() => {
                 play();
+                quitGame();
             }}>
             Quit Game
         </Button>
@@ -105,6 +109,15 @@ class SessionPage extends React.Component {
     }
 
     componentDidMount() {
+
+        AOS.init(
+            {
+               duration: 2000,
+               delay:500,
+               easing: 'ease-out-back',
+            }
+        );
+
         // Does the game exist?
         const gs: GameService = new GameService(this.state.id);
         gs.init()
@@ -136,13 +149,8 @@ class SessionPage extends React.Component {
         this.gameDocSub$.unsubscribe();
     }
 
-    quitGame = async () => {
-        window['gs'].quitGame();
-    };
-
     render() {
 
-        AOS.init()
 
         return (
             <>
@@ -207,12 +215,12 @@ class SessionPage extends React.Component {
                                     <StartGameButton></StartGameButton>
                                 </Link>)
                             :
-                            <Button style={{ cursor: 'not-allowed' }} className="btn btn-secondary" size="lg" >
+                            <Button data-aos='zoom-out' style={{ cursor: 'not-allowed' }} className="btn btn-secondary" size="lg" >
                                 Start Game
                             </Button>
                         }
                         <div>
-                            <Link to={"/session/" + this.id}>
+                            <Link to={"/"}>
                                 <QuitGameButton></QuitGameButton>
                             </Link>
                         </div>

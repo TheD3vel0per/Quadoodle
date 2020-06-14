@@ -212,8 +212,11 @@ class GameService {
             return player.uid !== uid;
         });
 
-        this.gameRef.update({players: players, isFull: false}); 
-        
+        if (players.length !== 0) {
+            this.gameRef.update({players: players, isFull: false}); 
+        } else {
+            this.gameRef.delete();
+        }
     }
 
     /**
@@ -308,21 +311,10 @@ class GameService {
 
     genRandomObject() {
         const options = [
-            'Rat',
-            'Mouse',
-            'Squirrel',
-            'Bat',
-            'Cows',
-            'Sheep',
-            'Pig',
-            'Dog',
-            'Goat',
-            'Cat',
-            'Buffalo',
-            'Horse',
             'Octocat',
             'Self Portrait',
-            'Unicorn'
+            'Unicorn',
+            'Whatever You Want!'
         ];
 
         const randomIndex = Math.round(Math.random() * options.length);

@@ -1,4 +1,6 @@
 import React from 'react';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 import Header from '../components/Header';
 import RightRenderer from '../components/RightRenderer';
 import LeftRenderer from '../components/LeftRenderer';
@@ -66,6 +68,15 @@ class GamePage extends React.Component {
     onSubmitButtonClicked = () => window['gs'].nextTurn();
 
     componentDidMount() {
+
+        AOS.init(
+            {
+               duration: 2000,
+               delay:500,
+               easing: 'ease-out-back',
+            }
+        );
+
         if (!window['gs']) {
             window['gs'] = new GameService(this.id);
             window['gs'].init()
@@ -84,8 +95,10 @@ class GamePage extends React.Component {
     }
     
     render() {
+
         return (
             <>
+
                 <Header />
                 <div>
                     <div className="center-game">
@@ -111,7 +124,7 @@ class GamePage extends React.Component {
                         alignItems: "center"
                     }}>
                     <Link to={'/combined/' + this.id}>
-                        <Button style={{ width: 340, height: 50 }} className="btn btn-primary" size="lg" onClick={this.state.myDrawingArea === 'bottomRight' ? this.endGame : this.onSubmitButtonClicked}>
+                        <Button data-aos='zoom-in' style={{ width: 340, height: 50 }} className="btn btn-primary" size="lg" onClick={this.state.myDrawingArea === 'bottomRight' ? this.endGame : this.onSubmitButtonClicked}>
                             {this.state.myDrawingArea === 'bottomRight' ? "Finish Game" : "Submit"}
                         </Button>
                     </Link>

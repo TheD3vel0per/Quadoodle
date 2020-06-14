@@ -13,7 +13,9 @@ import GameService from '../services/GameService';
 import { Subscription } from 'rxjs';
 
 class CombinedPage extends React.Component {
-    state = {};
+    state = {
+        objectToDraw: ''
+    };
     id;
     gameDocSub$: Subscription;
 
@@ -61,6 +63,10 @@ class CombinedPage extends React.Component {
             await window['gs'].init();
         }
         console.log(window['gs']);
+        
+        this.setState({
+            objectToDraw: window['gs'].gameDoc.objectToDraw
+        });
 
         this.gameDocSub$ = window['gs'].gameDoc$.subscribe(data => {
             this.displayImage(ctx, data);
@@ -83,6 +89,11 @@ class CombinedPage extends React.Component {
                                 <canvas id="combinedCanvas" className="CenteredElement" width="600" height="600">
                                 </canvas>
                             </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h1 className={"objectToDraw"}>{this.state.objectToDraw}</h1>
                         </Col>
                     </Row>
                     <Row>

@@ -20,4 +20,7 @@ table, tr, td  {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom:10px;
+    height: 340px;
+    width: 340px;
   }
