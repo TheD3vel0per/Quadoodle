@@ -8,8 +8,8 @@ import * as $ from 'jquery';
 
 class Drawer extends React.Component {
     state = {
-        height: 400,
-        width: 400,
+        height: 300,
+        width: 300,
         backgroundColor: '#efefef',
         mouseActivated: false,
         previousPoint: { x: -1, y: -1 },

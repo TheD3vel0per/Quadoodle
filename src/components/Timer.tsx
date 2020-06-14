@@ -23,7 +23,7 @@ class Timer extends React.Component {
                 <div>
                 {/* <Countdown date={Date.now() + 5000}>
                       <Completionist />
-                6</Countdown> */}
+                </Countdown> */}
 
                 </div>
             </>

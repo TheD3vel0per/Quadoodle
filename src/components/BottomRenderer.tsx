@@ -35,7 +35,7 @@ class BottomRenderer extends React.Component {
     }
 
     render() {
-        return (<canvas id="bottomCanvas" width={420} height={20}></canvas>);
+        return (<canvas id="bottomCanvas" width={320} height={20}></canvas>);
     }
 }
 

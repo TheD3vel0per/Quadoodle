@@ -25,18 +25,18 @@ class CombinedPage extends React.Component {
     displayImage = async (ctx: CanvasRenderingContext2D, gameDoc) => {
 
         ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, 800, 800);
+        ctx.fillRect(0, 0, 600, 600);
 
         let topRightImage = new Image();
         topRightImage.src = window['gs'].gameDoc.topRight;
         topRightImage.onload = () => {
-            ctx.drawImage(topRightImage, 400, 0);
+            ctx.drawImage(topRightImage, 300, 0);
         };
 
         let bottomRightImage = new Image();
         bottomRightImage.src = window['gs'].gameDoc.bottomRight;
         bottomRightImage.onload = () => {
-            ctx.drawImage(bottomRightImage, 400, 400);
+            ctx.drawImage(bottomRightImage, 300, 300);
         };
 
         let topLeftImage = new Image();
@@ -48,7 +48,7 @@ class CombinedPage extends React.Component {
         let bottomLeftImage = new Image();
         bottomLeftImage.src = window['gs'].gameDoc.bottomLeft;
         bottomLeftImage.onload = () => {
-            ctx.drawImage(bottomLeftImage, 0, 400);
+            ctx.drawImage(bottomLeftImage, 0, 300);
         };
     };
 
@@ -80,7 +80,7 @@ class CombinedPage extends React.Component {
                     <Row>
                         <Col>
                             <div className="CenteredElement">
-                                <canvas id="combinedCanvas" className="CenteredElement" width="800" height="800">
+                                <canvas id="combinedCanvas" className="CenteredElement" width="600" height="600">
                                 </canvas>
                             </div>
                         </Col>

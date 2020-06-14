@@ -1,4 +1,5 @@
 import React from 'react';
+import AOS from 'aos';
 import * as firebase from 'firebase';
 import GameService from '../services/GameService';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -13,6 +14,28 @@ import useSound from 'use-sound';
 
 
 function StartGameButton() {
+
+    const soundUrl = '/assets/sound/plasterbrain.mp3';
+
+    const [play, { stop }] = useSound(
+        soundUrl,
+        { volume: 0.5 }
+    );
+
+    return (
+        <Button className="btn btn-primary" size="lg"
+            onClick={() => {
+                play();
+            }}
+            onMouseLeave={() => {
+                stop();
+            }}>
+            Start Game
+        </Button>
+    );
+}
+
+function StartGameDisabledButton() {
 
     const soundUrl = '/assets/sound/plasterbrain.mp3';
 
@@ -119,12 +142,14 @@ class SessionPage extends React.Component {
 
     render() {
 
+        AOS.init()
+
         return (
             <>
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing speed={0.001}>
-                        <span>Waiting for Players to Join!</span>
+                        <span >Waiting for Players to Join!</span>
                     </Typing></h1>
                 </div>
                 <Timer />
@@ -176,11 +201,11 @@ class SessionPage extends React.Component {
                         {this.state.game.players.length >= 4 ?
                             (this.state.goToGame ?
                                 <Link to={"/game/" + this.state.game._id}>
-                                <StartGameButton></StartGameButton>
+                                    <StartGameButton></StartGameButton>
                                 </Link> :
                                 <Link to={"/waiting/" + this.state.game._id}>
                                     <StartGameButton></StartGameButton>
-                                </Link> )
+                                </Link>)
                             :
                             <Button style={{ cursor: 'not-allowed' }} className="btn btn-secondary" size="lg" >
                                 Start Game
@@ -188,14 +213,16 @@ class SessionPage extends React.Component {
                         }
                         <div>
                             <Link to={"/session/" + this.id}>
-                            <QuitGameButton></QuitGameButton>
-                        </Link>
+                                <QuitGameButton></QuitGameButton>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </>
         );
+
     }
+
 }
 
 export default SessionPage;

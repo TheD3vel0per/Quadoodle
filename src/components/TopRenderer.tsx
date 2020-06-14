@@ -18,14 +18,14 @@ class TopRenderer extends React.Component {
                 let topLeftImage = new Image();
                 topLeftImage.src = window['gs'].gameDoc.topLeft;
                 topLeftImage.onload = () => {
-                    ctx.drawImage(topLeftImage, 20, -380);
+                    ctx.drawImage(topLeftImage, 20, -280);
                 };
                 break;
             case 'bottomRight':
                 let topRightImage = new Image();
                 topRightImage.src = window['gs'].gameDoc.topRight;
                 topRightImage.onload = () => {
-                    ctx.drawImage(topRightImage, 20, -380);
+                    ctx.drawImage(topRightImage, 20, -280);
                 };
                 break;
             default:
@@ -37,7 +37,7 @@ class TopRenderer extends React.Component {
     }
 
     render() {
-        return (<canvas id="topCanvas" width={420} height={20}></canvas>);
+        return (<canvas id="topCanvas" width={320} height={20}></canvas>);
     }
 }
 

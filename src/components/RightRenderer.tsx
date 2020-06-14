@@ -35,7 +35,7 @@ class RightRenderer extends React.Component {
     }
 
     render() {
-        return (<canvas id="rightCanvas" width={20} height={400}></canvas>);
+        return (<canvas id="rightCanvas" width={20} height={300}></canvas>);
     }
 }
 

@@ -16,6 +16,7 @@ import WaitingPage from './pages/WaitingPage';
 import AboutUsPage from './pages/AboutUs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import JoinPage from './pages/JoinPage';
 
 class App extends React.Component {
   state = {};
@@ -32,6 +33,7 @@ class App extends React.Component {
           <Route path='/game/:id' component={GamePage}></Route>
           <Route path='/waiting/:id' component={WaitingPage}></Route>
           <Route path='/combined/:id' component={CombinedPage}></Route>
+          <Route path='/join' component={JoinPage}></Route>
           <Route path='/about-us' component={AboutUsPage}></Route>
           <Route path='/dummy' component={DummyPage}></Route>
           <Route path='/draw' component={Drawer}></Route>

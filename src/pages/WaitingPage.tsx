@@ -52,17 +52,17 @@ class WaitingPage extends React.Component {
     }
 
 
-    // fetchData = () => {
-    //     fetch('https://app.zenserp.com/api/v2/search?apikey=1d693c90-ad32-11ea-a3e6-d545f1b52900&amp&q=' + window['gs'].gameDoc.objectToDraw + '&amp&tbm=isch&num=10')
-    //         .then((result) => result.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             this.setState({
-    //                 searchData: data
-    //             });
-    //         })
-    //         .catch(console.error);
-    // }
+    fetchData = () => {
+        fetch('https://app.zenserp.com/api/v2/search?apikey=1d693c90-ad32-11ea-a3e6-d545f1b52900&amp&q=' + window['gs'].gameDoc.objectToDraw + '&amp&tbm=isch&num=10')
+            .then((result) => result.json())
+            .then((data) => {
+                console.log(data);
+                this.setState({
+                    searchData: data
+                });
+            })
+            .catch(console.error);
+    }
 
     // fetchData = () => {
     //     firebase
@@ -90,6 +90,7 @@ class WaitingPage extends React.Component {
                 this.gameDocSub$.unsubscribe();
             }
         });
+        // this.fetchData();
     }
 
     componentWillUnmount() {
@@ -98,27 +99,15 @@ class WaitingPage extends React.Component {
 
     render() {
 
-        const photos = [
-            {
-                src: 'https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                width: 40,
-                height: 30
-            },
-            {
-                src: 'https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-                width: 10,
-                height: 10
-            }
-        ];
-        const BasicRows = () => <Gallery photos={photos} />;
+        const BasicRows = () => <Gallery photos={this.state.searchData.image_results.map(photo => ({
+            src: photo['sourceUrl'],
+            width: 1,
+            height: 1,
+        }))} />;
 
         return (
             <>
                 <Header />
-                <div>
-                    <BasicRows></BasicRows>
-                </div>
-                <br/>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing speed={0.001}>
                         <Typing.Delay ms={1000} />
@@ -126,13 +115,22 @@ class WaitingPage extends React.Component {
                     </Typing>
                     </h1>
                 </div>
-                <br/>
-                {this.state.goToGame ?
-                        <Link to={"/game/" + this.id}>
-
+                <br />
+                {(() => {
+                    if (this.state.goToGame) {
+                        return <Link to={"/game/" + this.id} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                             <PlayTurnButton></PlayTurnButton>
-                        </Link> : null}
-                        
+                        </Link>;
+                    } else {
+                        //alert('It\'s your turn now!');
+                        return;
+                    }
+                })()}
+                <br />
+                <div>
+                    <BasicRows></BasicRows>
+                </div>
+
 
             </>
         );

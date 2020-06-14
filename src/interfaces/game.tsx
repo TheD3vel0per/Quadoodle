@@ -5,6 +5,7 @@ export default interface Game {
     objectToDraw: string,
     players: Array<Player>,
     playerTurn: Player,
+    isFull: boolean,
     topLeft: string,
     topRight: string,
     bottomLeft: string,

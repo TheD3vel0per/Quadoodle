@@ -18,14 +18,14 @@ class LeftyRenderer extends React.Component {
                 let topLeftImage = new Image();
                 topLeftImage.src = window['gs'].gameDoc.topLeft;
                 topLeftImage.onload = () => {
-                    ctx.drawImage(topLeftImage, -380, 0);
+                    ctx.drawImage(topLeftImage, -280, 0);
                 };
                 break;
             case 'bottomRight':
                 let bottomLeftImage = new Image();
                 bottomLeftImage.src = window['gs'].gameDoc.bottomLeft;
                 bottomLeftImage.onload = () => {
-                    ctx.drawImage(bottomLeftImage, -380, 0);
+                    ctx.drawImage(bottomLeftImage, -280, 0);
                 };
                 break;
             default:
@@ -37,7 +37,7 @@ class LeftyRenderer extends React.Component {
     }
 
     render() {
-        return (<canvas id="leftCanvas" width={20} height={400}></canvas>);
+        return (<canvas id="leftCanvas" width={20} height={300}></canvas>);
     }
 }
 

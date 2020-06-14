@@ -41,6 +41,7 @@ class GameService {
                             objectToDraw: obj['objectToDraw'],
                             players: obj['players'],
                             playerTurn: obj['playerTurn'],
+                            isFull: obj['isFull'],
                             topLeft: obj['topLeft'],
                             topRight: obj['topRight'],
                             bottomLeft: obj['bottomLeft'],
@@ -51,6 +52,7 @@ class GameService {
                             objectToDraw: obj['objectToDraw'],
                             players: obj['players'],
                             playerTurn: obj['playerTurn'],
+                            isFull: obj['isFull'],
                             topLeft: obj['topLeft'],
                             topRight: obj['topRight'],
                             bottomLeft: obj['bottomLeft'],
@@ -142,6 +144,7 @@ class GameService {
                         objectToDraw: obj['objectToDraw'],
                         players: obj['players'],
                         playerTurn: obj['playerTurn'],
+                        isFull: obj['isFull'],
                         topLeft: obj['topLeft'],
                         topRight: obj['topRight'],
                         bottomLeft: obj['bottomLeft'],
@@ -152,6 +155,7 @@ class GameService {
                         objectToDraw: obj['objectToDraw'],
                         players: obj['players'],
                         playerTurn: obj['playerTurn'],
+                        isFull: obj['isFull'],
                         topLeft: obj['topLeft'],
                         topRight: obj['topRight'],
                         bottomLeft: obj['bottomLeft'],
@@ -178,7 +182,11 @@ class GameService {
 
         if (players.length < 4 && !this.containsPlayer(players, newPlayer)) {
             players.push(newPlayer);
-            await this.gameRef.update({ players: players });
+            if (players.length === 4) {
+                await this.gameRef.update({ players: players, isFull: true });
+            } else {
+                await this.gameRef.update({ players: players });
+            }
         }
 
         this.setupStreams();
@@ -204,7 +212,8 @@ class GameService {
             return player.uid !== uid;
         });
 
-        this.gameRef.update({players: players});
+        this.gameRef.update({players: players, isFull: false}); 
+        
     }
 
     /**
@@ -224,6 +233,7 @@ class GameService {
             objectToDraw: this.genRandomObject(),
             players: [newPlayer],
             playerTurn: newPlayer,
+            isFull: false,
             topLeft: '',
             topRight: '',
             bottomLeft: '',

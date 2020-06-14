@@ -88,14 +88,14 @@ class GamePage extends React.Component {
             <>
                 <Header />
                 <div>
-                    <div className="center">
-                        <div style={{ width: 440, height: 20 }}><TopRenderer/></div>
-                        <div style={{ height: 400 }}>
+                    <div className="center-game">
+                        <div style={{ width: 340, height: 20 }}><TopRenderer/></div>
+                        <div style={{ height: 300 }}>
                             <LeftRenderer />
                             <Drawer />
                             <RightRenderer />
                         </div>
-                        <div style={{ width: 440, height: 20 }}><BottomRenderer /></div>
+                        <div style={{ width: 340, height: 20 }}><BottomRenderer /></div>
                     </div>
                 </div>
                 <br />
@@ -111,7 +111,7 @@ class GamePage extends React.Component {
                         alignItems: "center"
                     }}>
                     <Link to={'/combined/' + this.id}>
-                        <Button style={{ width: 440, height: 50 }} className="btn btn-primary" size="lg" onClick={this.state.myDrawingArea === 'bottomRight' ? this.endGame : this.onSubmitButtonClicked}>
+                        <Button style={{ width: 340, height: 50 }} className="btn btn-primary" size="lg" onClick={this.state.myDrawingArea === 'bottomRight' ? this.endGame : this.onSubmitButtonClicked}>
                             {this.state.myDrawingArea === 'bottomRight' ? "Finish Game" : "Submit"}
                         </Button>
                     </Link>

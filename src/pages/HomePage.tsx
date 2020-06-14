@@ -89,7 +89,7 @@ class HomePage extends React.Component {
                                 <CreateGameButton></CreateGameButton>
                             </Link>
                             <div className="divider" />
-                            <Link to={"/session/" + this.getNewId()}>
+                            <Link to={"/join/" + this.getNewId()}>
                                 <JoinGameButton></JoinGameButton>
                             </Link>
                         </div>
