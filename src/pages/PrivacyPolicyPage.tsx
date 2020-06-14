@@ -8,15 +8,13 @@ class PrivacyPolicyPage extends React.Component {
             <>
                 <Container>
                     <h1>Quadoodle Privacy Policy</h1>
-                    <p>Last Updated: June 13, 2020</p>
+                    <p>Last Updated: June 14, 2020</p>
                     <p>The Quadoodle Privacy Policy is designed to help you understand the information we collect and the different ways we may use or share it.</p>
                     <p>This policy applies to your use of Quadoodle. By “Quadoodle,” we mean the Quadoodle website, browser extension, mobile app, and any other of our products and services that directly link to this policy. To learn more about privacy at Quadoodle, please keep reading below.</p>
                     <h3>What Information We Collect</h3>
                     <p>information we collect often depends on the exact nature of our relationship with you and how you choose to use Quadoodle, which is either as a guest or registered user with an account. We have broken these descriptions down into categories to make them more clear:</p>
                     <h3>We collect account information.</h3>
                     <p>We collect information relating to your account. For example, through Facebook we collect your full name, user ID, and email. You may be able to share other account-related information with us too if you edit your account to include fields like name or payment information to make contribution. So far, NO PAYMENT INFORMATION is collected as this is for future implementation to integrate with a financial API.</p>
-                    <h3>We collect location information.</h3>
-                    <p>We ask permission to access your location in order to geocode and promote projects/research in your area. This information is not distributed/available to any other parties.</p>
                     <p>We use information to protect our company and users. We use information to protect our company and users, for example to identify fraud and secure, protect accounts, and protect Quadoodle. This includes looking into potentially prohibited or illegal activity.</p>
                     <p>Our basis for processing European information. Our basis for processing your information is typically to perform a contract, including responding to your requests. Where this applies, if you choose not to provide information, we may be unable to perform the contract or respond to your request. We also process information based on consent or for our legitimate purposes.</p>
                     <p>We also use information as otherwise permitted by law.</p>
@@ -38,7 +36,7 @@ class PrivacyPolicyPage extends React.Component {
                     <p>We maintain appropriate administrative, technical, and physical safeguards to protect your personal information from accidental, unlawful, or unauthorized destruction, loss, alteration, access, disclosure, or use and other unlawful forms of processing. You should keep your user credentials and password confidential and secure so that your information is protected.</p>
                     <p>We work hard to protect your data, but the Internet is not 100% secure. We encourage you to use caution online. This includes not sharing or reusing your passwords.</p>
                     <h3>Transfers of Information</h3>
-                    <p>Quadoodle is based in Vancouver BC, which means the information we collect may be processed and stored within the province of British Columbia. We keep personal information as long as it is necessary or relevant for the practices described in this policy and as otherwise required by law.</p>
+                    <p>Quadoodle is based in Vancouver BC, which means the information we collect may be processed and stored within the province of British Columbia. Our service is hosted on the Google Cloud platforms US multiregion, therefore your data will be stored and processed in the United States of America. We keep personal information as long as it is necessary or relevant for the practices described in this policy and as otherwise required by law.</p>
                     <h3>Third-Party Sites</h3>
                     <p>We may link to third-party sites or apps. Quadoodle may also include third-party content that collects information. We do not control these third parties. This policy does not apply to the privacy practices of these third-party websites or apps. Please read the privacy policies of other websites carefully. We are not responsible for the practices of these third-party sites or apps.</p>
                     <p>© Quadoodle {(new Date()).getFullYear()} • All Rights Reserved</p>
