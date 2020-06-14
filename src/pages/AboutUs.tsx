@@ -23,7 +23,6 @@ class AboutUsPage extends React.Component {
   render() {
     return (
       <>
-      <Header />
       <div>
         <section id="team" className="pb-5">
           <div className="container">

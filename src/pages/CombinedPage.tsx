@@ -27,12 +27,12 @@ class CombinedPage extends React.Component {
         this.id = this.props['match'].params.id;
     }
 
-    // saveImage =sync() {
-    //     var canvas = document.getElementById("combinedCanvas");
-    //     canvas.toBlob(function(blob) {
-    //         saveAs(blob, ".png");
-    //     })
-    // }
+    saveImage () {
+        const canvas: any = document.getElementById('combinedCanvas');
+        canvas.toBlob(function(blob) {
+            saveAs(blob,".png");
+        })
+    }
 
     displayImage = async (ctx: CanvasRenderingContext2D, gameDoc) => {
 
@@ -91,8 +91,7 @@ class CombinedPage extends React.Component {
     render() {
         return (
             <>
-                <Header />
-                <h1><Typing>
+                <h1 className="center-dis-dood"><Typing>
                         <span>Laugh at your Great Creation Together!</span>
                     </Typing></h1>
                 <Container fluid>
@@ -106,13 +105,12 @@ class CombinedPage extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            <h1 className={"objectToDraw"}>{this.state.objectToDraw}</h1>
+                            <h1 className={"center-dis-dood"}>{this.state.objectToDraw}</h1>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <Link to={"/"} onClick={() => {saveImage();
-            }}>
+                            <Link to={"/"} onClick={() => this.saveImage()}>
                                 <Button className="btn1" ><i className="fa fa-download" /> Download </Button>
                             </Link>
                         </Col>

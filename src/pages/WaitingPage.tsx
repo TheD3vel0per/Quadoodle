@@ -107,7 +107,6 @@ class WaitingPage extends React.Component {
 
         return (
             <>
-                <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing>
                         <Typing.Delay ms={1000} />

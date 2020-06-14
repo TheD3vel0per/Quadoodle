@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
+import '../components/Header.css';
 
 class Header extends React.Component {
     state = { auth: null };
@@ -50,15 +51,15 @@ class Header extends React.Component {
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse>
-                    <Nav className="mr-auto">
-                        <Nav.Item>
-                            <Link to='/' className='nav-link' style={{ color: 'white' }}>Home</Link>
+                    <Nav className="navbar navbar-dark navbar-expand justify-content-center mr-auto">
+                        <Nav.Item className="navbar-nav nav-justified w-150 text-center">
+                            <Link to='/' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-home"></i><span className="d-none d-sm-inline">Home</span></Link>       
                         </Nav.Item>
-                        <Nav.Item>
-                            <Link to='/join' className='nav-link' style={{ color: 'white' }}>Join A Game!</Link>
+                        <Nav.Item className="navbar-nav nav-justified w-150 text-center">
+                            <Link to='/join' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-edit"></i><span className="d-none d-sm-inline">Join a Game!</span></Link>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Link to='/about-us' className='nav-link' style={{ color: 'white' }}>About Us</Link>
+                        <Nav.Item className="navbar-nav nav-justified w-150 text-center">
+                            <Link to='/about-us' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-group"></i><span className="d-none d-sm-inline">About Us</span></Link>
                         </Nav.Item>
                     </Nav>
                     <Nav>

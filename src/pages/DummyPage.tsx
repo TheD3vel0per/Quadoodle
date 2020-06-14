@@ -64,7 +64,6 @@ class DummyPage extends React.Component {
     render() {
         return (
             <>
-                <Header/>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1>"DUMMY"</h1>
                 </div>

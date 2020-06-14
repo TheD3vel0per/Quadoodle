@@ -64,51 +64,55 @@ class JoinPage extends React.Component {
 
         return (
             <>
-            
-                <Header />
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing>
-                        <span>Join an Existing Game Server!</span>
-                    </Typing></h1>
-                </div>
+                {this.state.user ?
+                    <div className="center-it-my-guy">
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                            <h1><Typing>
+                                <span>Join an Existing Game!</span>
+                            </Typing></h1>
+                        </div>
 
-                <div>
-                    <ul>
-                        {
-                            this.state.games.map((game, i) => (
-                                <div className="list-group"
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center"
-                                    }}
-                                >
-                                    <Link to={'/session/' + game._id}>
-                                        <button type="button"
+                        <div>
+                            <ul>
+                                {
+                                    this.state.games.map((game, i) => (
+                                        <div className="list-group"
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center"
+                                            }}
+                                            key={game._uid}
+                                        >
+                                            <Link to={'/session/' + game._id}>
+                                                <button type="button"
 
-                                            className="list-group-item list-group-item-action active list">
-                                            {game.players[0].displayName + '\'s Game'}
+                                                    className="list-group-item list-group-item-action active list">
+                                                    {game.players[0].displayName + '\'s Game'}
 
-                                            <span style={{ float: 'right' }}>
-                                                {game.players.length}/4
+                                                    <span style={{ float: 'right' }}>
+                                                        {game.players.length}/4
                                             </span>
 
-                                        </button>
+                                                </button>
 
-                                        <div style={{ height: "10px" }}>
+                                                <div style={{ height: "10px" }}>
+
+
+                                                </div>
+
+
+                                            </Link>
 
 
                                         </div>
-
-
-                                    </Link>
-
-
-                                </div>
-                            ))
-                        }
-                    </ul>
-                </div>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    :
+                    <h1>Log In To See Games!</h1>}
 
             </>
         );

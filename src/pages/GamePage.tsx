@@ -99,7 +99,6 @@ class GamePage extends React.Component {
         return (
             <>
 
-                <Header />
                 <div>
                     <div className="center-game">
                         <div style={{ width: 340, height: 20 }}><TopRenderer/></div>

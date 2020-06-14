@@ -17,6 +17,9 @@ import AboutUsPage from './pages/AboutUs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import JoinPage from './pages/JoinPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   state = {};
@@ -27,19 +30,24 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route path='/session/:id' component={SessionPage}></Route>
-          <Route path='/game/:id' component={GamePage}></Route>
-          <Route path='/waiting/:id' component={WaitingPage}></Route>
-          <Route path='/combined/:id' component={CombinedPage}></Route>
-          <Route path='/join' component={JoinPage}></Route>
-          <Route path='/about-us' component={AboutUsPage}></Route>
-          <Route path='/dummy' component={DummyPage}></Route>
-          <Route path='/draw' component={Drawer}></Route>
-          <Route path='/' component={HomePage}></Route>
-        </Switch>
-      </BrowserRouter>
+      <>
+        <BrowserRouter>
+          <Header></Header>
+          <Switch>
+            <Route path='/session/:id' component={SessionPage}></Route>
+            <Route path='/game/:id' component={GamePage}></Route>
+            <Route path='/waiting/:id' component={WaitingPage}></Route>
+            <Route path='/combined/:id' component={CombinedPage}></Route>
+            <Route path='/join' component={JoinPage}></Route>
+            <Route path='/about-us' component={AboutUsPage}></Route>
+            <Route path='/privacy-policy' component={PrivacyPolicyPage}></Route>
+            <Route path='/dummy' component={DummyPage}></Route>
+            <Route path='/draw' component={Drawer}></Route>
+            <Route path='/' component={HomePage}></Route>
+          </Switch>
+          <Footer></Footer>
+        </BrowserRouter>
+      </>
     );
   }
 }

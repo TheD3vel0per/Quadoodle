@@ -96,6 +96,7 @@ class SessionPage extends React.Component {
             bottomRight: ''
         },
         goToGame: false,
+        isCopied: false
     };
     gameDocSub$: Subscription;
     id;
@@ -152,7 +153,7 @@ class SessionPage extends React.Component {
 
         return (
             <>
-                <Header />
+
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing>
                         <span> Waiting for Players to Join!</span>
@@ -198,20 +199,23 @@ class SessionPage extends React.Component {
 
                 </ListGroup>
                 <h1 className="wowee">Share link to invite players!</h1>
-                <div>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}>
 
 
                     <CopyToClipboard text={window.location.href}
                         onCopy={() => this.setState({ copied: true })}>
                         <Button className="btn btn-primary" size="lg" 
-                        onClick={() => {
-                            <span style={{ color: 'red' }}>Copied.</span>
-                        }}>
-                            Copy to clipboard with button
+                        onClick={() => this.setState({isCopied: true})}>
+                            Click to Copy to clipboard
                             </Button>
                     </CopyToClipboard>
 
-                    
+                    {this.state.isCopied ? <span style={{color: 'red'}}>Copied.</span> : null}
                     
                 </div>
 
