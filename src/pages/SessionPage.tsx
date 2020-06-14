@@ -156,7 +156,7 @@ class SessionPage extends React.Component {
             <>
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing speed={0.001}>
+                    <h1><Typing>
                         <span >Waiting for Players to Join!</span>
                     </Typing></h1>
                 </div>

@@ -11,6 +11,7 @@ import Drawer from '../components/Drawer';
 import './CombinedPage.css';
 import GameService from '../services/GameService';
 import { Subscription } from 'rxjs';
+import Typing from 'react-typing-animation';
 
 class CombinedPage extends React.Component {
     state = {
@@ -82,6 +83,9 @@ class CombinedPage extends React.Component {
         return (
             <>
                 <Header />
+                <h1><Typing>
+                        <span>Laugh at your Great Creation Together!</span>
+                    </Typing></h1>
                 <Container fluid>
                     <Row>
                         <Col>

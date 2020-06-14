@@ -57,7 +57,7 @@ class JoinPage extends React.Component {
             <>
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing speed={}>
+                    <h1><Typing>
                         <span>Join an Existing Game Server!</span>
                     </Typing></h1>
                 </div>
@@ -67,12 +67,16 @@ class JoinPage extends React.Component {
                         {
                             this.state.games.map((game, i) => (
                                 <div className="list-group">
-                                    <Link to={'/session/' + game._id}>
+                                    <Link  to={'/session/' + game._id}>
                                         <button type="button"
                                             className="list-group-item list-group-item-action active">
                                             {game.players[0].displayName + '\'s Game'}
                                         </button>
+
+                                        {game.players.length / 4}
                                     </Link>
+
+
                                 </div>
                             ))
                         }

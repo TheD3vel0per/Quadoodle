@@ -55,7 +55,7 @@ class Header extends React.Component {
                     <Nav>
                         <Nav.Item>
                             <Nav.Link onClick={user ? this.logout : this.login} style={{color: 'white'}}>
-                                {user ? user.displayName + " " : ""}
+                                <div style={{fontWeight: 'bold'}}>{user ? user.displayName + " " : ""}</div>
                                 Log {user ? "Out" : "In With Facebook"}
                             </Nav.Link>
                         </Nav.Item>
