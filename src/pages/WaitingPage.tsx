@@ -10,6 +10,30 @@ import { map, take, catchError, filter, tap } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import Gallery from "react-photo-gallery";
 import GameService from '../services/GameService';
+import useSound from 'use-sound';
+
+
+function PlayTurnButton() {
+
+    const soundUrl = '/assets/sound/justinvoke.mp3';
+
+    const [play, { stop }] = useSound(
+        soundUrl,
+        { volume: 0.5 }
+    );
+
+    return (
+        <Button className="btn btn-primary" size="lg"
+            onClick={() => {
+                play();
+            }}
+            onMouseLeave={() => {
+                stop();
+            }}>
+            Play Your Turn!
+        </Button>
+    );
+}
 
 class WaitingPage extends React.Component {
     state = {
@@ -77,13 +101,13 @@ class WaitingPage extends React.Component {
         const photos = [
             {
                 src: 'https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-                width: 4,
-                height: 3
+                width: 40,
+                height: 30
             },
             {
                 src: 'https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-                width: 1,
-                height: 1
+                width: 10,
+                height: 10
             }
         ];
         const BasicRows = () => <Gallery photos={photos} />;
@@ -91,60 +115,24 @@ class WaitingPage extends React.Component {
         return (
             <>
                 <Header />
+                <div>
+                    <BasicRows></BasicRows>
+                </div>
+                <br/>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing speed={0.001}>
                         <Typing.Delay ms={1000} />
                         <span> "Please Wait For your Turn!"</span>
                     </Typing>
                     </h1>
-
-
-                    {/* <div>
-                        <BasicRows />
-                    </div> */}
-
-
-
-
-                    {/* <ImageGallery items={(this.state.searchData['image_results']).map(result => ({
-                        original: result.sourceUrl,
-                        thumbnail: result.thumbnail
-                    }))}>
-                    </ImageGallery>  */}
-
-
-
-                    {/* <ImageGallery items={
-                        of(this.state.searchData['image_results'])
-                            .pipe(
-                                map(result => {
-                                    try {
-                                        return {
-                                            original: result['sourceUrl'],
-                                            thumbnail: result['thumbnail']
-                                        };
-                                    } catch {
-                                        return {
-                                            original: '',
-                                            thumbnail: '',
-                                        }
-                                    }
-                                }),
-                                filter(obj => obj.original !== ''),
-                                tap(console.log),
-                                take(10),
-                            )
-                    }>
-                    </ImageGallery> */}
-
-
-                    {this.state.goToGame ?
-                        <Link to={"/game/" + this.id}>
-                            <Button className="btn btn-primary" size="lg" >
-                                Play My Turn!
-                            </Button>
-                        </Link> : null}
                 </div>
+                <br/>
+                {this.state.goToGame ?
+                        <Link to={"/game/" + this.id}>
+
+                            <PlayTurnButton></PlayTurnButton>
+                        </Link> : null}
+                        
 
             </>
         );

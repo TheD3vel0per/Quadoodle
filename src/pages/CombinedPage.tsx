@@ -63,7 +63,7 @@ class CombinedPage extends React.Component {
         console.log(window['gs']);
 
         this.gameDocSub$ = window['gs'].gameDoc$.subscribe(data => {
-            this.displayImage(ctx, data); 
+            this.displayImage(ctx, data);
         });
 
     }
@@ -86,6 +86,18 @@ class CombinedPage extends React.Component {
                         </Col>
                     </Row>
                     <Row>
+                        <Col>
+                            <Link to={"/"}>
+                                <Button className="btn1"><i className="fa fa-download" /> Download </Button>
+                            </Link>
+                        </Col>
+                        <Col>
+                            <div className="CenteredElement">
+                                <a href="#" className="fa fa-facebook" />
+                                <a href="#" className="fa fa-twitter" />
+                                <a href="#" className="fa fa-google" />
+                            </div>
+                        </Col>
                         <Col>
                             <div className="CenteredElement">
                                 <Link to={"/"}>

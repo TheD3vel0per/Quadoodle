@@ -1,36 +1,32 @@
 import React from 'react';
-import Drawer from '../components/Drawer';
+import Header from '../components/Header';
 import RightRenderer from '../components/RightRenderer';
 import LeftRenderer from '../components/LeftRenderer';
 import TopRenderer from '../components/TopRenderer';
 import BottomRenderer from '../components/BottomRenderer';
-import Header from '../components/Header';
-import './GamePage.css';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import Drawer from '../components/Drawer';
 import GameService from '../services/GameService';
 
-var imageURL = "";
 
-class GamePageOld extends React.Component {
+class GamePage extends React.Component {
     state = {
         objectToDraw: '',
-        myDrawingArea: '',
+        myDrawingArea: ''
     };
-    gs;
-    id;
+    id = '';
 
     constructor(props) {
         super(props);
         this.id = this.props['match'].params.id;
     }
 
+    endGame = () => window['gs'].endGame();
 
+    onSubmitButtonClicked = () => window['gs'].nextTurn();
 
     getURL = () => {
-
-        // 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft'
-        console.log(window['gs']);
 
         switch (this.state.myDrawingArea) {
             case 'topLeft':
@@ -51,10 +47,6 @@ class GamePageOld extends React.Component {
         }
 
     };
-
-    onSubmitButtonClicked = () => window['gs'].nextTurn();
-
-    endGame = () => window['gs'].endGame();
 
     async componentDidMount() {
         if (!window['gs']) {
@@ -106,4 +98,4 @@ class GamePageOld extends React.Component {
     }
 }
 
-export default GamePageOld;
+export default GamePage;

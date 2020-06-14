@@ -12,9 +12,10 @@ import GamePage from './pages/GamePage';
 import Drawer from './components/Drawer';
 import DummyPage from './pages/DummyPage';
 import CombinedPage from './pages/CombinedPage';
+import WaitingPage from './pages/WaitingPage';
+import AboutUsPage from './pages/AboutUs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import WaitingPage from './pages/WaitingPage';
 
 class App extends React.Component {
   state = {};
@@ -31,6 +32,7 @@ class App extends React.Component {
           <Route path='/game/:id' component={GamePage}></Route>
           <Route path='/waiting/:id' component={WaitingPage}></Route>
           <Route path='/combined/:id' component={CombinedPage}></Route>
+          <Route path='/about-us' component={AboutUsPage}></Route>
           <Route path='/dummy' component={DummyPage}></Route>
           <Route path='/draw' component={Drawer}></Route>
           <Route path='/' component={HomePage}></Route>

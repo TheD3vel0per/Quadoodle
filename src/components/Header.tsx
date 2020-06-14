@@ -46,7 +46,7 @@ class Header extends React.Component {
                             <Link to='/' className='nav-link' style={{color: 'white'}}>Home</Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Link to='/about' className='nav-link' style={{color: 'white'}}>About Us</Link>
+                            <Link to='/about-us' className='nav-link' style={{color: 'white'}}>About Us</Link>
                         </Nav.Item>
                     </Nav>
                     <Nav>

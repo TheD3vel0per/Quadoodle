@@ -8,6 +8,51 @@ import Header from '../components/Header';
 import { Subscription } from 'rxjs';
 import './SessionPage.css';
 import Timer from '../components/Timer';
+import Typing from 'react-typing-animation';
+import useSound from 'use-sound';
+
+
+function StartGameButton() {
+
+    const soundUrl = '/assets/sound/plasterbrain.mp3';
+
+    const [play, { stop }] = useSound(
+        soundUrl,
+        { volume: 0.5 }
+    );
+
+    return (
+        <Button className="btn btn-primary" size="lg"
+            onClick={() => {
+                play();
+            }}
+            onMouseLeave={() => {
+                stop();
+            }}>
+            Start Game
+        </Button>
+    );
+}
+
+function QuitGameButton() {
+
+    const soundUrl = '/assets/sound/marimba.mp3';
+
+    const [play, { stop }] = useSound(
+        soundUrl,
+        { volume: 0.5 }
+    );
+
+    return (
+        <Button className="btn btn-primary" size="lg"
+            onClick={() => {
+                play();
+            }}>
+            Quit Game
+        </Button>
+    );
+}
+
 
 class SessionPage extends React.Component {
     state = {
@@ -77,6 +122,11 @@ class SessionPage extends React.Component {
         return (
             <>
                 <Header />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                    <h1><Typing speed={0.001}>
+                        <span>Waiting for Players to Join!</span>
+                    </Typing></h1>
+                </div>
                 <Timer />
                 <ListGroup style={{ maxHeight: '300px', maxWidth: '600px', overflow: 'auto', padding: '10px 15px' }} className="center">
 
@@ -126,15 +176,11 @@ class SessionPage extends React.Component {
                         {this.state.game.players.length >= 4 ?
                             (this.state.goToGame ?
                                 <Link to={"/game/" + this.state.game._id}>
-                                    <Button className="btn btn-primary" size="lg" >
-                                        Start Game
-                                    </Button>
+                                <StartGameButton></StartGameButton>
                                 </Link> :
                                 <Link to={"/waiting/" + this.state.game._id}>
-                                    <Button className="btn btn-primary" size="lg" >
-                                        Start Game
-                                    </Button>
-                                </Link>)
+                                    <StartGameButton></StartGameButton>
+                                </Link> )
                             :
                             <Button style={{ cursor: 'not-allowed' }} className="btn btn-secondary" size="lg" >
                                 Start Game
@@ -142,10 +188,8 @@ class SessionPage extends React.Component {
                         }
                         <div>
                             <Link to={"/session/" + this.id}>
-                                <Button className="btn btn-primary" size="lg" onClick={this.quitGame}>
-                                    Quit Game
-                                </Button>
-                            </Link>
+                            <QuitGameButton></QuitGameButton>
+                        </Link>
                         </div>
                     </div>
                 </div>
