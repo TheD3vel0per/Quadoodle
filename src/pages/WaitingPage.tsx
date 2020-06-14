@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Typing from 'react-typing-animation';
 import Header from '../components/Header';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
@@ -108,12 +107,14 @@ class WaitingPage extends React.Component {
         return (
             <>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing>
-                        <Typing.Delay ms={1000} />
-                        <span> "Please Wait For your Turn!"</span>
-                    </Typing>
-                    </h1>
+                    <h1>Please Wait For your Turn!</h1>
                 </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 <br />
                 {(() => {
                     if (this.state.goToGame) {
@@ -130,7 +131,20 @@ class WaitingPage extends React.Component {
                     <BasicRows></BasicRows>
                 </div>
 
-
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </>
         );
     }
