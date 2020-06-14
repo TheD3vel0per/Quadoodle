@@ -37,25 +37,34 @@ class Header extends React.Component {
         return (
             <Navbar bg='primary' expand='lg'>
                 <Navbar.Brand>
-                    <Link to='/' className='navbar-brand' style={{color: 'white'}}>Quadoodle</Link>
+                    <img
+                        src="/assets/logo.svg"
+                        width="45"
+                        height="45"
+                        className="d-inline-block align-top"
+                        alt="Quadoodle logo"
+                        style={{
+                            borderRadius: 12
+                        }}
+                    />
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse>
                     <Nav className="mr-auto">
                         <Nav.Item>
-                            <Link to='/' className='nav-link' style={{color: 'white'}}>Home</Link>
+                            <Link to='/' className='nav-link' style={{ color: 'white' }}>Home</Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Link to='/join' className='nav-link' style={{color: 'white'}}>Join A Game!</Link>
+                            <Link to='/join' className='nav-link' style={{ color: 'white' }}>Join A Game!</Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Link to='/about-us' className='nav-link' style={{color: 'white'}}>About Us</Link>
+                            <Link to='/about-us' className='nav-link' style={{ color: 'white' }}>About Us</Link>
                         </Nav.Item>
                     </Nav>
                     <Nav>
                         <Nav.Item>
-                            <Nav.Link onClick={user ? this.logout : this.login} style={{color: 'white'}}>
-                                <div style={{fontWeight: 'bold'}}>{user ? user.displayName + " " : ""}</div>
+                            <Nav.Link onClick={user ? this.logout : this.login} style={{ color: 'white' }}>
+                                <div style={{ fontWeight: 'bold' }}>{user ? user.displayName + " " : ""}</div>
                                 Log {user ? "Out" : "In With Facebook"}
                             </Nav.Link>
                         </Nav.Item>

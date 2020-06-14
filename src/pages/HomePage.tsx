@@ -122,6 +122,7 @@ class HomePage extends React.Component {
     };
 
     render() {
+        console.log(this.state.user ? "hehehe" : "hohoho");
         return (
             <>
                 <Header />

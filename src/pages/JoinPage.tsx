@@ -16,7 +16,8 @@ import GameService from '../services/GameService';
 
 class JoinPage extends React.Component {
     state = {
-        games: []
+        games: [],
+        user: null
     };
     gamesSub$: Subscription = new Subscription();
 
@@ -31,10 +32,17 @@ class JoinPage extends React.Component {
         await fs.init();
         this.gamesSub$ = fs.openGames$.subscribe(data => {
             this.setState({
-                games: data
+                games: data,
+                user: firebase.auth().currentUser
             });
             console.log(data);
         });
+
+        firebase.auth().onAuthStateChanged(data => {
+            this.setState({
+                user: firebase.auth().currentUser
+            });
+        })
 
         AOS.init(
             {
@@ -56,6 +64,7 @@ class JoinPage extends React.Component {
 
         return (
             <>
+            
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing>
@@ -68,25 +77,25 @@ class JoinPage extends React.Component {
                         {
                             this.state.games.map((game, i) => (
                                 <div className="list-group"
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center"
-                                }}
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center"
+                                    }}
                                 >
-                                    <Link  to={'/session/' + game._id}>
+                                    <Link to={'/session/' + game._id}>
                                         <button type="button"
 
                                             className="list-group-item list-group-item-action active list">
                                             {game.players[0].displayName + '\'s Game'}
 
-                                            <span style = {{float: 'right'}}>
-                                            {game.players.length}/4
+                                            <span style={{ float: 'right' }}>
+                                                {game.players.length}/4
                                             </span>
 
                                         </button>
 
-                                        <div style = {{height : "10px"}}>
+                                        <div style={{ height: "10px" }}>
 
 
                                         </div>

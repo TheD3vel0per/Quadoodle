@@ -12,6 +12,7 @@ import './SessionPage.css';
 import Timer from '../components/Timer';
 import Typing from 'react-typing-animation';
 import useSound from 'use-sound';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 function StartGameButton() {
@@ -109,9 +110,9 @@ class SessionPage extends React.Component {
 
         AOS.init(
             {
-               duration: 2000,
-               delay:500,
-               easing: 'ease-out-back',
+                duration: 2000,
+                delay: 500,
+                easing: 'ease-out-back',
             }
         );
 
@@ -197,6 +198,23 @@ class SessionPage extends React.Component {
 
                 </ListGroup>
                 <h1 className="wowee">Share link to invite players!</h1>
+                <div>
+
+
+                    <CopyToClipboard text={window.location.href}
+                        onCopy={() => this.setState({ copied: true })}>
+                        <Button className="btn btn-primary" size="lg" 
+                        onClick={() => {
+                            <span style={{ color: 'red' }}>Copied.</span>
+                        }}>
+                            Copy to clipboard with button
+                            </Button>
+                    </CopyToClipboard>
+
+                    
+                    
+                </div>
+
                 <div
                     style={{
                         display: "flex",
