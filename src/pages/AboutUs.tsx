@@ -38,7 +38,6 @@ class AboutUsPage extends React.Component {
                           <p><img className="img-fluid" src="/assets/img/headshots/devam.jpg" alt="card image" /></p>
                           <h4 className="card-title">Devam Sisodraker</h4>
                           <p className="card-text">I’m Devam, a second year Math & Computer Science student at UBC with a passion for software engineering.</p>
-                          <a href="https://devam.io" className="btn btn-primary btn-sm"><i className="fa fa-plus" /></a>
                         </div>
                       </div>
                     </div>
@@ -76,7 +75,6 @@ class AboutUsPage extends React.Component {
                           <p><img className=" img-fluid" src="/assets/img/headshots/vishal.jpg" alt="card image" /></p>
                           <h4 className="card-title">Vishal Desh</h4>
                           <p className="card-text">Hi, I am Vishal Desh currently pursuing Computer Science at UBC.</p>
-                          <a href="http://vishaldesh.com/" className="btn btn-primary btn-sm"><i className="fa fa-plus" /></a>
                         </div>
                       </div>
                     </div>
@@ -150,8 +148,7 @@ class AboutUsPage extends React.Component {
                         <div className="card-body text-center">
                           <p><img className="img-fluid" src="/assets/img/headshots/aiden.jpg" alt="card image" /></p>
                           <h4 className="card-title">Aiden Kerr</h4>
-                          <p className="card-text">Computer Science student at UBC</p>
-                          <a href="" className="btn btn-primary btn-sm"><i className="fa fa-plus" /></a>
+                          <p className="card-text">Hey, I'm Aiden! I'm a Computer Science student at UBC</p>
                         </div>
                       </div>
                     </div>
@@ -159,7 +156,7 @@ class AboutUsPage extends React.Component {
                       <div className="card">
                         <div className="card-body text-center mt-4">
                           <h4 className="card-title">About Me</h4>
-                          <p className="card-text">Computers are neat</p>
+                          <p className="card-text">I've been interested in technology and problem solving for as long as I can remember! Watching a project go from nothing to complete is always a joy.</p>
                           <ul className="list-inline">
                             <li className="list-inline-item">
                               <a className="social-icon text-xs-center" target="_blank" href="https://www.linkedin.com/in/aidenkerr/">

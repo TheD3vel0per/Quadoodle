@@ -1,4 +1,13 @@
 import React from 'react';
+import {
+     MDBCol, 
+     MDBContainer, 
+     MDBRow, 
+     MDBFooter,
+     } 
+from "mdbreact";
+import './Footer.css';
+import { Link } from 'react-router-dom';
 
 
 class Footer extends React.Component {
@@ -12,14 +21,22 @@ class Footer extends React.Component {
     render() {
         return (
 
-            <footer className="page-footer font-small blue pt-4">
+            <footer 
+                className="footer navbar-fixed-bottom">
 
-            <div className="footer-copyright text-center py-3">© 2020 Copyright:
-              <a href="https://quadoodle.online/"> Quadoodle.online</a>
+            <MDBFooter color="blue" className="font-small pt-4 mt-4">
+
+            <div className="footer-copyright text-center py-3" style={{color: 'white'}}>
+              <MDBContainer fluid>
+                &copy; {new Date().getFullYear()} Copyright: <a href="https://quadoodle.online" style={{color: 'white'}}> Quadoodle.online </a>
+                | <Link to="/privacy-policy" style={{color: 'white'}}>Privacy Policy</Link>
+              </MDBContainer>
             </div>
 
-          
-          </footer>
+          </MDBFooter>
+
+        </footer>
+
         );
     }
 }

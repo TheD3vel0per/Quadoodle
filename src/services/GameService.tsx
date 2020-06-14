@@ -213,7 +213,11 @@ class GameService {
         });
 
         if (players.length !== 0) {
-            this.gameRef.update({players: players, isFull: false}); 
+            this.gameRef.update({
+                players: players, 
+                isFull: false,
+                playerTurn: players[0]
+            }); 
         } else {
             this.gameRef.delete();
         }

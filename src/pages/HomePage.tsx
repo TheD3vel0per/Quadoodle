@@ -6,9 +6,10 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import './HomePage.css';
-import Typing from 'react-typing-animation';
 import useSound from 'use-sound';
-
+import TyperText from '../components/TyperText';
+import { useState, useEffect, useRef } from "react";
+import ReactDOM from "react-dom";
 
 function CreateGameButton() {
 
@@ -18,6 +19,8 @@ function CreateGameButton() {
         soundUrl,
         { volume: 0.5 }
     );
+
+
 
     return (
         <Button data-aos='zoom-in' className="btn btn-primary" size="lg"
@@ -122,16 +125,12 @@ class HomePage extends React.Component {
     };
 
     render() {
+
         console.log(this.state.user ? "hehehe" : "hohoho");
         return (
             <>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing>
-                        <Typing.Delay ms={1000} />
-                        <span>{"Hey Everyone!"}</span>
-                        <Typing.Reset count={1} delay={2000} />
-                        <span>{"Let's Quadoodle!"}</span>
-                    </Typing></h1>
+                    <h1>Hey Everyone! Let's Quadoodle!</h1>
                 </div>
                 <div>
                     <img src="/assets/img/elephant.png" className="center" />

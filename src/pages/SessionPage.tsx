@@ -155,9 +155,7 @@ class SessionPage extends React.Component {
             <>
 
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing>
-                        <span> Waiting for Players to Join!</span>
-                    </Typing></h1>
+                    <h1>Waiting for Players to Join!</h1>
                 </div>
                 <Timer />
                 <ListGroup style={{ maxHeight: '300px', maxWidth: '600px', overflow: 'auto', padding: '10px 15px' }} className="center">

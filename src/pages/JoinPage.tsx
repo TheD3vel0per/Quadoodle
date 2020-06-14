@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import './HomePage.css';
 import './JoinPage.css';
-import Typing from 'react-typing-animation';
 import useSound from 'use-sound';
 import FindService from '../services/FindService';
 import { Subscription } from 'rxjs';
@@ -67,9 +66,7 @@ class JoinPage extends React.Component {
                 {this.state.user ?
                     <div className="center-it-my-guy">
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                            <h1><Typing>
-                                <span>Join an Existing Game!</span>
-                            </Typing></h1>
+                            <h1>Join an Existing Game!</h1>
                         </div>
 
                         <div>

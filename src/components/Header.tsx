@@ -38,28 +38,30 @@ class Header extends React.Component {
         return (
             <Navbar bg='primary' expand='lg'>
                 <Navbar.Brand>
-                    <img
-                        src="/assets/logo.svg"
-                        width="45"
-                        height="45"
-                        className="d-inline-block align-top"
-                        alt="Quadoodle logo"
-                        style={{
-                            borderRadius: 12
-                        }}
-                    />
+                    <Link to='/'>
+                        <img
+                            src="/assets/logo.svg"
+                            width="65"
+                            height="65"
+                            className="d-inline-block align-top"
+                            alt="Quadoodle logo"
+                            style={{
+                                borderRadius: 12
+                            }}
+                        />
+                    </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse>
-                    <Nav className="navbar navbar-dark navbar-expand justify-content-center mr-auto">
-                        <Nav.Item className="navbar-nav nav-justified w-150 text-center">
-                            <Link to='/' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-home"></i><span className="d-none d-sm-inline">Home</span></Link>       
+                    <Nav className="navbar-nav mr-auto">
+                        <Nav.Item className="navbar-nav nav-justified w-200 text-center">
+                            <Link to='/' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-home fa-3x"></i><span className="d-none d-sm-inline">Home</span></Link>
                         </Nav.Item>
-                        <Nav.Item className="navbar-nav nav-justified w-150 text-center">
-                            <Link to='/join' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-edit"></i><span className="d-none d-sm-inline">Join a Game!</span></Link>
+                        <Nav.Item className="navbar-nav nav-justified w-200 text-center">
+                            <Link to='/join' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-group fa-3x"></i><span className="d-none d-sm-inline">Join a Game!</span></Link>
                         </Nav.Item>
-                        <Nav.Item className="navbar-nav nav-justified w-150 text-center">
-                            <Link to='/about-us' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-group"></i><span className="d-none d-sm-inline">About Us</span></Link>
+                        <Nav.Item className="navbar-nav nav-justified w-200 text-center">
+                            <Link to='/about-us' className="nav-link d-flex flex-column" style={{ color: 'white' }}><i className="fa fa-address-book-o fa-3x"></i><span className="d-none d-sm-inline">About Us</span></Link>
                         </Nav.Item>
                     </Nav>
                     <Nav>

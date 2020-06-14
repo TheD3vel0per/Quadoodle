@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 import {
     Button,
     Container,
@@ -27,10 +29,10 @@ class CombinedPage extends React.Component {
         this.id = this.props['match'].params.id;
     }
 
-    saveImage () {
+    saveImage() {
         const canvas: any = document.getElementById('combinedCanvas');
-        canvas.toBlob(function(blob) {
-            saveAs(blob,".png");
+        canvas.toBlob(function (blob) {
+            saveAs(blob, "YourQuadoodle.png");
         })
     }
 
@@ -65,6 +67,15 @@ class CombinedPage extends React.Component {
     };
 
     async componentDidMount() {
+
+        AOS.init(
+            {
+                duration: 2000,
+                delay: 500,
+                easing: 'ease-out-back',
+            }
+        );
+
         const canvas: any = document.getElementById('combinedCanvas');
         const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 
@@ -73,7 +84,7 @@ class CombinedPage extends React.Component {
             await window['gs'].init();
         }
         console.log(window['gs']);
-        
+
         this.setState({
             objectToDraw: window['gs'].gameDoc.objectToDraw
         });
@@ -91,9 +102,7 @@ class CombinedPage extends React.Component {
     render() {
         return (
             <>
-                <h1 className="center-dis-dood"><Typing>
-                        <span>Laugh at your Great Creation Together!</span>
-                    </Typing></h1>
+                <h1 className="center-dis-dood">Laugh at your Great Creation Together!</h1>
                 <Container fluid>
                     <Row>
                         <Col>
@@ -110,18 +119,25 @@ class CombinedPage extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Link to={"/"} onClick={() => this.saveImage()}>
-                                <Button className="btn1" ><i className="fa fa-download" /> Download </Button>
-                            </Link>
+                            <div className="CenteredElement">
+                                <Link to={"/"} onClick={() => this.saveImage()}>
+                                    <Button className="btn1" style={{width: 200, height:80}}> Download </Button>
+                                </Link>
+                                <Link to={"/"}>
+                                    <Button className="btn btn-primary" size="lg" style={{width: 200, height: 80}}>
+                                        Quit Game
+                                    </Button>
+                                </Link>
+                            </div>
                         </Col>
-                        <Col>
+                        {/* <Col>
                             <div className="CenteredElement">
                                 <a href="#" className="fa fa-facebook" />
                                 <a href="#" className="fa fa-twitter" />
                                 <a href="#" className="fa fa-google" />
                             </div>
-                        </Col>
-                        <Col>
+                        </Col> */}
+                        {/* <Col>
                             <div className="CenteredElement">
                                 <Link to={"/"}>
                                     <Button className="btn btn-primary" size="lg" >
@@ -129,7 +145,7 @@ class CombinedPage extends React.Component {
                                     </Button>
                                 </Link>
                             </div>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Container>
 
