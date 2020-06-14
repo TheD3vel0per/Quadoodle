@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import './HomePage.css';
+import './JoinPage.css';
 import Typing from 'react-typing-animation';
 import useSound from 'use-sound';
 import FindService from '../services/FindService';
@@ -66,14 +67,31 @@ class JoinPage extends React.Component {
                     <ul>
                         {
                             this.state.games.map((game, i) => (
-                                <div className="list-group">
+                                <div className="list-group"
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center"
+                                }}
+                                >
                                     <Link  to={'/session/' + game._id}>
                                         <button type="button"
-                                            className="list-group-item list-group-item-action active">
+
+                                            className="list-group-item list-group-item-action active list">
                                             {game.players[0].displayName + '\'s Game'}
+
+                                            <span style = {{float: 'right'}}>
+                                            {game.players.length}/4
+                                            </span>
+
                                         </button>
 
-                                        {game.players.length / 4}
+                                        <div style = {{height : "10px"}}>
+
+
+                                        </div>
+
+
                                     </Link>
 
 

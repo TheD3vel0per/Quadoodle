@@ -49,9 +49,6 @@ function StartGameDisabledButton() {
         <Button className="btn btn-primary" size="lg"
             onClick={() => {
                 play();
-            }}
-            onMouseLeave={() => {
-                stop();
             }}>
             Start Game
         </Button>
@@ -157,7 +154,7 @@ class SessionPage extends React.Component {
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <h1><Typing>
-                        <span >Waiting for Players to Join!</span>
+                        <span> Waiting for Players to Join!</span>
                     </Typing></h1>
                 </div>
                 <Timer />
@@ -199,6 +196,7 @@ class SessionPage extends React.Component {
                     })}
 
                 </ListGroup>
+                <h1 className="wowee">Share link to invite players!</h1>
                 <div
                     style={{
                         display: "flex",

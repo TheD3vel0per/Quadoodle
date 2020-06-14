@@ -109,7 +109,7 @@ class WaitingPage extends React.Component {
             <>
                 <Header />
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <h1><Typing speed={0.001}>
+                    <h1><Typing>
                         <Typing.Delay ms={1000} />
                         <span> "Please Wait For your Turn!"</span>
                     </Typing>

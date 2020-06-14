@@ -12,6 +12,8 @@ import './CombinedPage.css';
 import GameService from '../services/GameService';
 import { Subscription } from 'rxjs';
 import Typing from 'react-typing-animation';
+import { saveAs } from 'file-saver';
+
 
 class CombinedPage extends React.Component {
     state = {
@@ -23,6 +25,12 @@ class CombinedPage extends React.Component {
     constructor(props) {
         super(props);
         this.id = this.props['match'].params.id;
+    }
+
+    saveImage ( canvas, id) {
+        canvas.toBlob(function(blob) {
+            saveAs(blob, id + ".png");
+        })
     }
 
     displayImage = async (ctx: CanvasRenderingContext2D, gameDoc) => {
@@ -102,7 +110,7 @@ class CombinedPage extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Link to={"/"}>
+                            <Link to={"/"} onClick={saveImage()}>
                                 <Button className="btn1"><i className="fa fa-download" /> Download </Button>
                             </Link>
                         </Col>
@@ -132,3 +140,14 @@ class CombinedPage extends React.Component {
 }
 
 export default CombinedPage;
+
+// {
+//     this.state.games.map((game, i) => (
+//             <Link >
+
+
+//             </Link>
+
+
+//     ))
+// }
